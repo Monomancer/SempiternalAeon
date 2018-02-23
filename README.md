@@ -25,12 +25,9 @@ beyond just numbers getting bigger.
 I want the game to provide a different experience each time I start over, without the randomization processing being overly transparent or too similar to all other players or previous times I played it.  
 
 
-Prototype instructions:
-Currently only Windows builds are available.  
-Follow this link:  
+Prototype instructions: Currently only Windows builds are available.
+Follow this link: https://drive.google.com/file/d/1o8I9NTKkMUUUFFpJ27J8lSbwIiTO1BX9/view
 
-Download and run the .exe file.
+Click the download button in the top right to download and extract the folder. Run SempiternalAeon.exe to start the game.
 
-
-
-Youtube Link:  
+Youtube Link: https://youtu.be/VXJ3z9y-iwo  
