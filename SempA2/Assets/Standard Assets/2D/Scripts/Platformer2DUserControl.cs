@@ -10,6 +10,7 @@ namespace UnityStandardAssets._2D
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
 
+        private bool basic_attack;
 
         private void Awake()
         {
@@ -23,17 +24,25 @@ namespace UnityStandardAssets._2D
             {
                 // Read the jump input in Update so button presses aren't missed.
                 m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                
+            }
+            if (!basic_attack)
+            {
+                basic_attack = CrossPlatformInputManager.GetButtonDown("Basic_Attack");
             }
         }
+
 
 
         private void FixedUpdate()
         {
             // Read the inputs.
-            bool crouch = Input.GetKey(KeyCode.LeftControl);
+            bool crouch = Input.GetKey(KeyCode.CapsLock);
             float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
             m_Character.Move(h, crouch, m_Jump);
+            m_Character.Basic_Attack(basic_attack, h);
+            basic_attack = false;
             m_Jump = false;
         }
     }
