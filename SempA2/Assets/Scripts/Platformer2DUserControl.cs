@@ -14,6 +14,9 @@ namespace UnityStandardAssets._2D
 
 		private bool basic_attack;
 		private DialogueManager dMan;
+		private bool crouch;
+		private float h;
+
 
 		private void Awake ()
 		{
@@ -34,24 +37,25 @@ namespace UnityStandardAssets._2D
 				basic_attack = CrossPlatformInputManager.GetButtonDown ("Basic_Attack");
 			}
 
+			if (!dMan.dialogueActive) {
+				crouch = Input.GetKey (KeyCode.CapsLock);
+				h = CrossPlatformInputManager.GetAxis ("Horizontal");
+			} else {
+				crouch = basic_attack = m_Jump = false;
+				h = 0;
+			}
+
 		}
 
 
 
 		private void FixedUpdate ()
 		{
-			if (!dMan.dialogueActive) {
-				// Read the inputs.
-				bool crouch = Input.GetKey (KeyCode.CapsLock);
-				float h = CrossPlatformInputManager.GetAxis ("Horizontal");
-				// Pass all parameters to the character control script.
-				m_Character.Move (h, crouch, m_Jump);
-				m_Character.Basic_Attack (basic_attack, h);
-				basic_attack = false;
-				m_Jump = false;
-			} else {
-				m_Character.Move (0, false, m_Jump);
-			}
+			// Pass all parameters to the character control script.
+			m_Character.Move (h, crouch, m_Jump);
+			m_Character.Basic_Attack (basic_attack, h);
+			basic_attack = false;
+			m_Jump = false;
 		}
 	}
 }
