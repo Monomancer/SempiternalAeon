@@ -15,9 +15,9 @@ TagManager:
   - 
   - 
   - Obstacle
-  - 
-  - 
-  - 
+  - NPC
+  - Player
+  - Ground
   - 
   - 
   - 
