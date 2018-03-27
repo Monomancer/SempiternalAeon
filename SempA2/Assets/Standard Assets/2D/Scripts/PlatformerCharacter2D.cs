@@ -20,6 +20,8 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
+        private bool basic_attack;
+
         private void Awake()
         {
             // Setting up references.
@@ -46,6 +48,10 @@ namespace UnityStandardAssets._2D
 
             // Set the vertical animation
             m_Anim.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+
+            
+
+
         }
 
 
@@ -98,6 +104,17 @@ namespace UnityStandardAssets._2D
                 m_Grounded = false;
                 m_Anim.SetBool("Ground", false);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            }
+        }
+
+        public void Basic_Attack(bool attack, float move) {
+            if (attack)
+            {
+                m_Anim.SetBool("Basic_Attack", true);
+                m_Anim.SetFloat("Speed", 0);
+            }
+            else {
+                m_Anim.SetBool("Basic_Attack", false);
             }
         }
 
