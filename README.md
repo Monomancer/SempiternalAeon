@@ -4,6 +4,10 @@
 
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Sempiternal-Aeon/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+Note for all alpha testers:
+  please keep in mind that we are a small group of 3 coders. 2 of whom are not seniors, and none of whom have ever coded in Unity before, or had any game dev experience.  Additionally, our user story was fairly broad in scope, ambitious, and very subjective. 
+  Things that may seem simple to an experienced game developer ended up taking us hours to implement and debug.
+
 
 
 MVP: An engaging 2D side-scrolling game featuring multiple procedural or randomly generated elements.
@@ -25,9 +29,9 @@ beyond just numbers getting bigger.
 I want the game to provide a different experience each time I start over, without the randomization processing being overly transparent or too similar to all other players or previous times I played it.  
 
 
-Prototype instructions: Currently only Windows builds are available.
-Follow this link: https://drive.google.com/file/d/1o8I9NTKkMUUUFFpJ27J8lSbwIiTO1BX9/view
+Alpha release instructions: Currently only Windows builds are available.
+Follow this link: (link missing)
 
 Click the download button in the top right to download and extract the folder. Run SempiternalAeon.exe to start the game.
 
-Youtube Link: https://youtu.be/VXJ3z9y-iwo  
+Youtube Link: https://www.youtube.com/watch?v=y_fES-5cM88
