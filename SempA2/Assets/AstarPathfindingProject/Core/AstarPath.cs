@@ -2,18 +2,20 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
+
 #if UNITY_5_5_OR_NEWER
 using UnityEngine.Profiling;
 #endif
 
 #if NETFX_CORE
 using Thread = Pathfinding.WindowsStore.Thread;
+
 #else
 using Thread = System.Threading.Thread;
 #endif
 
 [ExecuteInEditMode]
-[AddComponentMenu("Pathfinding/Pathfinder")]
+[AddComponentMenu ("Pathfinding/Pathfinder")]
 /**
  * Core component for the A* %Pathfinding System.
  * This class handles all of the pathfinding system, calculates all paths and stores the info.\n
@@ -23,13 +25,19 @@ using Thread = System.Threading.Thread;
  * \nosubgrouping
  * \ingroup relevant
  */
-[HelpURL("http://arongranberg.com/astar/docs/class_astar_path.php")]
-public class AstarPath : VersionedMonoBehaviour {
+[HelpURL ("http://arongranberg.com/astar/docs/class_astar_path.php")]
+public class AstarPath : VersionedMonoBehaviour
+{
 	/** The version number for the A* %Pathfinding Project */
-	public static readonly System.Version Version = new System.Version(4, 1, 10);
+	public static readonly System.Version Version = new System.Version (4, 1, 10);
 
 	/** Information about where the package was downloaded */
-	public enum AstarDistribution { WebsiteDownload, AssetStore };
+	public enum AstarDistribution
+	{
+		WebsiteDownload,
+		AssetStore}
+
+	;
 
 	/** Used by the editor to guide the user to the correct place to download updates */
 	public static readonly AstarDistribution Distribution = AstarDistribution.WebsiteDownload;
@@ -52,34 +60,35 @@ public class AstarPath : VersionedMonoBehaviour {
 	}
 
 	/** Holds all graph data */
-	[UnityEngine.Serialization.FormerlySerializedAs("astarData")]
+	[UnityEngine.Serialization.FormerlySerializedAs ("astarData")]
 	public AstarData data;
 
 	/** Holds all graph data.
 	 * \deprecated The 'astarData' field has been renamed to 'data'
 	 */
-	[System.Obsolete("The 'astarData' field has been renamed to 'data'")]
+	[System.Obsolete ("The 'astarData' field has been renamed to 'data'")]
 	public AstarData astarData { get { return data; } }
 
 	/** Returns the active AstarPath object in the scene.
 	 * \note This is only set if the AstarPath object has been initialized (which happens in Awake).
 	 */
-#if UNITY_4_6 || UNITY_4_3
+	#if UNITY_4_6 || UNITY_4_3
 	public static new AstarPath active;
 #else
 	public static AstarPath active;
-#endif
+	#endif
 
 	/** Shortcut to Pathfinding.AstarData.graphs */
 	public NavGraph[] graphs {
 		get {
 			if (data == null)
-				data = new AstarData();
+				data = new AstarData ();
 			return data.graphs;
 		}
 	}
 
 	#region InspectorDebug
+
 	/** @name Inspector - Debug
 	 * @{ */
 
@@ -180,7 +189,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	/** Max Nearest Node Distance Squared.
 	 * \see #maxNearestNodeDistance */
 	public float maxNearestNodeDistanceSqr {
-		get { return maxNearestNodeDistance*maxNearestNodeDistance; }
+		get { return maxNearestNodeDistance * maxNearestNodeDistance; }
 	}
 
 	/** If true, all graphs will be scanned during Awake.
@@ -294,7 +303,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \version Since version 3.6, this variable should in most cases be set to 0 since the max number of area indices available has been greatly increased.
 	 * \deprecated This is handled automatically now
 	 */
-	[System.Obsolete("Minimum area size is mostly obsolete since the limit has been raised significantly, and the edge cases are handled automatically")]
+	[System.Obsolete ("Minimum area size is mostly obsolete since the limit has been raised significantly, and the edge cases are handled automatically")]
 	public int minAreaSize = 0;
 
 	/** Throttle graph updates and batch them to improve performance.
@@ -336,13 +345,13 @@ public class AstarPath : VersionedMonoBehaviour {
 	/** Batch graph updates.
 	 * \deprecated This field has been renamed to #batchGraphUpdates.
 	 */
-	[System.Obsolete("This field has been renamed to 'batchGraphUpdates'")]
+	[System.Obsolete ("This field has been renamed to 'batchGraphUpdates'")]
 	public bool limitGraphUpdates { get { return batchGraphUpdates; } set { batchGraphUpdates = value; } }
 
 	/** Limit for how often should graphs be updated.
 	 * \deprecated This field has been renamed to #graphUpdateBatchingInterval.
 	 */
-	[System.Obsolete("This field has been renamed to 'graphUpdateBatchingInterval'")]
+	[System.Obsolete ("This field has been renamed to 'graphUpdateBatchingInterval'")]
 	public float maxGraphUpdateFreq { get { return graphUpdateBatchingInterval; } set { graphUpdateBatchingInterval = value; } }
 
 	/** @} */
@@ -375,6 +384,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	string inGameDebugPath;
 
 	/* @} */
+
 	#endregion
 
 	#region StatusVariables
@@ -422,7 +432,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	/** Returns if any graph updates are waiting to be applied.
 	 * \deprecated Use IsAnyGraphUpdateQueued instead
 	 */
-	[System.Obsolete("Fixed grammar, use IsAnyGraphUpdateQueued instead")]
+	[System.Obsolete ("Fixed grammar, use IsAnyGraphUpdateQueued instead")]
 	public bool IsAnyGraphUpdatesQueued { get { return IsAnyGraphUpdateQueued; } }
 
 	/** Returns if any graph updates are waiting to be applied.
@@ -456,6 +466,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	#endregion
 
 	#region Callbacks
+
 	/** @name Callbacks */
 	/* Callbacks to pathfinding events.
 	 * These allow you to hook in to the pathfinding process.\n
@@ -511,6 +522,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	public System.Action OnGraphsWillBeUpdated2;
 
 	/* @} */
+
 	#endregion
 
 	#region MemoryStructures
@@ -545,7 +557,7 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \astarpro
 	 */
-	public EuclideanEmbedding euclideanEmbedding = new EuclideanEmbedding();
+	public EuclideanEmbedding euclideanEmbedding = new EuclideanEmbedding ();
 
 	#endregion
 
@@ -559,18 +571,19 @@ public class AstarPath : VersionedMonoBehaviour {
 	 */
 	private ushort nextFreePathID = 1;
 
-	private AstarPath () {
+	private AstarPath ()
+	{
 		// Make sure that the pathProcessor is never null
-		pathProcessor = new PathProcessor(this, pathReturnQueue, 0, true);
+		pathProcessor = new PathProcessor (this, pathReturnQueue, 0, true);
 
-		pathReturnQueue = new PathReturnQueue(this);
-		workItems = new WorkItemProcessor(this);
-		graphUpdates = new GraphUpdateProcessor(this);
+		pathReturnQueue = new PathReturnQueue (this);
+		workItems = new WorkItemProcessor (this);
+		graphUpdates = new GraphUpdateProcessor (this);
 
 		// Forward graphUpdates.OnGraphsUpdated to AstarPath.OnGraphsUpdated
 		graphUpdates.OnGraphsUpdated += () => {
 			if (OnGraphsUpdated != null) {
-				OnGraphsUpdated(this);
+				OnGraphsUpdated (this);
 			}
 		};
 	}
@@ -580,13 +593,14 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * If it is null or not of length 32, it creates a new array and fills it with 0,1,2,3,4 etc...
 	 * \see AstarPath.FindTagNames
 	 */
-	public string[] GetTagNames () {
+	public string[] GetTagNames ()
+	{
 		if (tagNames == null || tagNames.Length != 32) {
 			tagNames = new string[32];
 			for (int i = 0; i < tagNames.Length; i++) {
-				tagNames[i] = ""+i;
+				tagNames [i] = "" + i;
 			}
-			tagNames[0] = "Basic Ground";
+			tagNames [0] = "Basic Ground";
 		}
 		return tagNames;
 	}
@@ -595,55 +609,59 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * If an AstarPath object cannot be found, it returns an array of length 1 with an error message.
 	 * \see AstarPath.GetTagNames
 	 */
-	public static string[] FindTagNames () {
-		if (active == null) active = GameObject.FindObjectOfType<AstarPath>();
+	public static string[] FindTagNames ()
+	{
+		if (active == null)
+			active = GameObject.FindObjectOfType<AstarPath> ();
 		if (active != null) {
-			return active.GetTagNames();
+			return active.GetTagNames ();
 		} else {
 			return new string[1] { "There is no AstarPath component in the scene" };
 		}
 	}
 
 	/** Returns the next free path ID */
-	internal ushort GetNextPathID () {
+	internal ushort GetNextPathID ()
+	{
 		if (nextFreePathID == 0) {
 			nextFreePathID++;
 
 			if (On65KOverflow != null) {
 				System.Action tmp = On65KOverflow;
 				On65KOverflow = null;
-				tmp();
+				tmp ();
 			}
 		}
 		return nextFreePathID++;
 	}
 
-	void RecalculateDebugLimits () {
+	void RecalculateDebugLimits ()
+	{
 		debugFloor = float.PositiveInfinity;
 		debugRoof = float.NegativeInfinity;
 
 		bool ignoreSearchTree = !showSearchTree || debugPathData == null;
 		for (int i = 0; i < graphs.Length; i++) {
-			if (graphs[i] != null && graphs[i].drawGizmos) {
-				graphs[i].GetNodes(node => {
-					if (ignoreSearchTree || Pathfinding.Util.GraphGizmoHelper.InSearchTree(node, debugPathData, debugPathID)) {
+			if (graphs [i] != null && graphs [i].drawGizmos) {
+				graphs [i].GetNodes (node => {
+					if (ignoreSearchTree || Pathfinding.Util.GraphGizmoHelper.InSearchTree (node, debugPathData, debugPathID)) {
 						if (debugMode == GraphDebugMode.Penalty) {
-							debugFloor = Mathf.Min(debugFloor, node.Penalty);
-							debugRoof = Mathf.Max(debugRoof, node.Penalty);
+							debugFloor = Mathf.Min (debugFloor, node.Penalty);
+							debugRoof = Mathf.Max (debugRoof, node.Penalty);
 						} else if (debugPathData != null) {
-							var rnode = debugPathData.GetPathNode(node);
+							var rnode = debugPathData.GetPathNode (node);
 							switch (debugMode) {
 							case GraphDebugMode.F:
-								debugFloor = Mathf.Min(debugFloor, rnode.F);
-								debugRoof = Mathf.Max(debugRoof, rnode.F);
+								debugFloor = Mathf.Min (debugFloor, rnode.F);
+								debugRoof = Mathf.Max (debugRoof, rnode.F);
 								break;
 							case GraphDebugMode.G:
-								debugFloor = Mathf.Min(debugFloor, rnode.G);
-								debugRoof = Mathf.Max(debugRoof, rnode.G);
+								debugFloor = Mathf.Min (debugFloor, rnode.G);
+								debugRoof = Mathf.Max (debugRoof, rnode.G);
 								break;
 							case GraphDebugMode.H:
-								debugFloor = Mathf.Min(debugFloor, rnode.H);
-								debugRoof = Mathf.Max(debugRoof, rnode.H);
+								debugFloor = Mathf.Min (debugFloor, rnode.H);
+								debugRoof = Mathf.Max (debugRoof, rnode.H);
 								break;
 							}
 						}
@@ -652,23 +670,26 @@ public class AstarPath : VersionedMonoBehaviour {
 			}
 		}
 
-		if (float.IsInfinity(debugFloor)) {
+		if (float.IsInfinity (debugFloor)) {
 			debugFloor = 0;
 			debugRoof = 1;
 		}
 
 		// Make sure they are not identical, that will cause the color interpolation to fail
-		if (debugRoof-debugFloor < 1) debugRoof += 1;
+		if (debugRoof - debugFloor < 1)
+			debugRoof += 1;
 	}
 
-	Pathfinding.Util.RetainedGizmos gizmos = new Pathfinding.Util.RetainedGizmos();
+	Pathfinding.Util.RetainedGizmos gizmos = new Pathfinding.Util.RetainedGizmos ();
 
 	/** Calls OnDrawGizmos on graph generators */
-	private void OnDrawGizmos () {
+	private void OnDrawGizmos ()
+	{
 		// Make sure the singleton pattern holds
 		// Might not hold if the Awake method
 		// has not been called yet
-		if (active == null) active = this;
+		if (active == null)
+			active = this;
 
 		if (active != this || graphs == null) {
 			return;
@@ -683,43 +704,45 @@ public class AstarPath : VersionedMonoBehaviour {
 		// not repaint events to make sure that the gizmos do not interfere with any kind of scene picking.
 		// This will not have any visual impact as only repaint events will result in any changes on the screen.
 		// From testing it seems the only events that can happen during OnDrawGizmos are the mouseUp and repaint events.
-		if (Event.current.type != EventType.Repaint) return;
+		if (Event.current.type != EventType.Repaint)
+			return;
 
-		AstarProfiler.StartProfile("OnDrawGizmos");
+		AstarProfiler.StartProfile ("OnDrawGizmos");
 
 		if (workItems.workItemsInProgress || isScanning) {
 			// If updating graphs, graph info might not be valid right now
 			// so just draw the same thing as last frame
-			gizmos.DrawExisting();
+			gizmos.DrawExisting ();
 		} else {
 			if (showNavGraphs && !manualDebugFloorRoof) {
-				RecalculateDebugLimits();
+				RecalculateDebugLimits ();
 			}
 
-			Profiler.BeginSample("Graph.OnDrawGizmos");
+			Profiler.BeginSample ("Graph.OnDrawGizmos");
 			// Loop through all graphs and draw their gizmos
 			for (int i = 0; i < graphs.Length; i++) {
-				if (graphs[i] != null && graphs[i].drawGizmos)
-					graphs[i].OnDrawGizmos(gizmos, showNavGraphs);
+				if (graphs [i] != null && graphs [i].drawGizmos)
+					graphs [i].OnDrawGizmos (gizmos, showNavGraphs);
 			}
-			Profiler.EndSample();
+			Profiler.EndSample ();
 
 			if (showNavGraphs) {
-				euclideanEmbedding.OnDrawGizmos();
+				euclideanEmbedding.OnDrawGizmos ();
 			}
 		}
 
-		gizmos.FinalizeDraw();
+		gizmos.FinalizeDraw ();
 
-		AstarProfiler.EndProfile("OnDrawGizmos");
+		AstarProfiler.EndProfile ("OnDrawGizmos");
 	}
 
 	/** Draws the InGame debugging (if enabled), also shows the fps if 'L' is pressed down.
 	 * \see #logPathResults PathLog
 	 */
-	private void OnGUI () {
+	private void OnGUI ()
+	{
 		if (logPathResults == PathLog.InGame && inGameDebugPath != "") {
-			GUI.Label(new Rect(5, 5, 400, 600), inGameDebugPath);
+			GUI.Label (new Rect (5, 5, 400, 600), inGameDebugPath);
 		}
 	}
 
@@ -728,16 +751,17 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see PathLog
 	 * \see Pathfinding.Path.DebugString
 	 */
-	private void LogPathResults (Path path) {
+	private void LogPathResults (Path path)
+	{
 		if (logPathResults != PathLog.None && (path.error || logPathResults != PathLog.OnlyErrors)) {
-			string debug = path.DebugString(logPathResults);
+			string debug = path.DebugString (logPathResults);
 
 			if (logPathResults == PathLog.InGame) {
 				inGameDebugPath = debug;
 			} else if (path.error) {
-				Debug.LogWarning(debug);
+				Debug.LogWarning (debug);
 			} else {
-				Debug.Log(debug);
+				//Debug.Log(debug);
 			}
 		}
 	}
@@ -753,34 +777,37 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see PathProcessor.TickNonMultithreaded
 	 * \see PathReturnQueue.ReturnPaths
 	 */
-	private void Update () {
+	private void Update ()
+	{
 		// This class uses the [ExecuteInEditMode] attribute
 		// So Update is called even when not playing
 		// Don't do anything when not in play mode
-		if (!Application.isPlaying) return;
+		if (!Application.isPlaying)
+			return;
 
 		// Execute blocking actions such as graph updates
 		// when not scanning
 		if (!isScanning) {
-			PerformBlockingActions();
+			PerformBlockingActions ();
 		}
 
 		// Calculates paths when not using multithreading
-		pathProcessor.TickNonMultithreaded();
+		pathProcessor.TickNonMultithreaded ();
 
 		// Return calculated paths
-		pathReturnQueue.ReturnPaths(true);
+		pathReturnQueue.ReturnPaths (true);
 	}
 
-	private void PerformBlockingActions (bool force = false) {
+	private void PerformBlockingActions (bool force = false)
+	{
 		if (workItemLock.Held && pathProcessor.queue.AllReceiversBlocked) {
 			// Return all paths before starting blocking actions
 			// since these might change the graph and make returned paths invalid (at least the nodes)
-			pathReturnQueue.ReturnPaths(false);
+			pathReturnQueue.ReturnPaths (false);
 
-			if (workItems.ProcessWorkItems(force)) {
+			if (workItems.ProcessWorkItems (force)) {
 				// At this stage there are no more work items, resume pathfinding threads
-				workItemLock.Release();
+				workItemLock.Release ();
 			}
 		}
 	}
@@ -791,9 +818,10 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #Pathfinding.IWorkItemContext
 	 */
-	[System.Obsolete("This method has been moved. Use the method on the context object that can be sent with work item delegates instead")]
-	public void QueueWorkItemFloodFill () {
-		throw new System.Exception("This method has been moved. Use the method on the context object that can be sent with work item delegates instead");
+	[System.Obsolete ("This method has been moved. Use the method on the context object that can be sent with work item delegates instead")]
+	public void QueueWorkItemFloodFill ()
+	{
+		throw new System.Exception ("This method has been moved. Use the method on the context object that can be sent with work item delegates instead");
 	}
 
 	/** If a WorkItem needs to have a valid flood fill during execution, call this method to ensure there are no pending flood fills.
@@ -802,9 +830,10 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #Pathfinding.IWorkItemContext
 	 */
-	[System.Obsolete("This method has been moved. Use the method on the context object that can be sent with work item delegates instead")]
-	public void EnsureValidFloodFill () {
-		throw new System.Exception("This method has been moved. Use the method on the context object that can be sent with work item delegates instead");
+	[System.Obsolete ("This method has been moved. Use the method on the context object that can be sent with work item delegates instead")]
+	public void EnsureValidFloodFill ()
+	{
+		throw new System.Exception ("This method has been moved. Use the method on the context object that can be sent with work item delegates instead");
 	}
 
 	/** Add a work item to be processed when pathfinding is paused.
@@ -815,8 +844,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #AddWorkItem(AstarWorkItem)
 	 */
-	public void AddWorkItem (System.Action callback) {
-		AddWorkItem(new AstarWorkItem(callback));
+	public void AddWorkItem (System.Action callback)
+	{
+		AddWorkItem (new AstarWorkItem (callback));
 	}
 
 	/** Add a work item to be processed when pathfinding is paused.
@@ -827,8 +857,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #AddWorkItem(AstarWorkItem)
 	 */
-	public void AddWorkItem (System.Action<IWorkItemContext> callback) {
-		AddWorkItem(new AstarWorkItem(callback));
+	public void AddWorkItem (System.Action<IWorkItemContext> callback)
+	{
+		AddWorkItem (new AstarWorkItem (callback));
 	}
 
 	/** Add a work item to be processed when pathfinding is paused.
@@ -846,18 +877,19 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #FlushWorkItems
 	 */
-	public void AddWorkItem (AstarWorkItem item) {
-		workItems.AddWorkItem(item);
+	public void AddWorkItem (AstarWorkItem item)
+	{
+		workItems.AddWorkItem (item);
 
 		// Make sure pathfinding is stopped and work items are processed
 		if (!workItemLock.Held) {
-			workItemLock = PausePathfindingSoon();
+			workItemLock = PausePathfindingSoon ();
 		}
 
 #if UNITY_EDITOR
 		// If not playing, execute instantly
 		if (!Application.isPlaying) {
-			FlushWorkItems();
+			FlushWorkItems ();
 		}
 #endif
 	}
@@ -871,19 +903,20 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #FlushGraphUpdates
 	 */
-	public void QueueGraphUpdates () {
+	public void QueueGraphUpdates ()
+	{
 		if (!graphUpdatesWorkItemAdded) {
 			graphUpdatesWorkItemAdded = true;
-			var workItem = graphUpdates.GetWorkItem();
+			var workItem = graphUpdates.GetWorkItem ();
 
 			// Add a new work item which first
 			// sets the graphUpdatesWorkItemAdded flag to false
 			// and then processes the graph updates
-			AddWorkItem(new AstarWorkItem(() => {
+			AddWorkItem (new AstarWorkItem (() => {
 				graphUpdatesWorkItemAdded = false;
 				lastGraphUpdate = Time.realtimeSinceStartup;
 
-				workItem.init();
+				workItem.init ();
 			}, workItem.update));
 		}
 	}
@@ -891,11 +924,12 @@ public class AstarPath : VersionedMonoBehaviour {
 	/** Waits a moment with updating graphs.
 	 * If batchGraphUpdates is set, we want to keep some space between them to let pathfinding threads running and then calculate all queued calls at once
 	 */
-	IEnumerator DelayedGraphUpdate () {
+	IEnumerator DelayedGraphUpdate ()
+	{
 		graphUpdateRoutineRunning = true;
 
-		yield return new WaitForSeconds(graphUpdateBatchingInterval-(Time.realtimeSinceStartup-lastGraphUpdate));
-		QueueGraphUpdates();
+		yield return new WaitForSeconds (graphUpdateBatchingInterval - (Time.realtimeSinceStartup - lastGraphUpdate));
+		QueueGraphUpdates ();
 		graphUpdateRoutineRunning = false;
 	}
 
@@ -906,8 +940,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see batchGraphUpdates
 	 * \see \ref graph-updates
 	 */
-	public void UpdateGraphs (Bounds bounds, float delay) {
-		UpdateGraphs(new GraphUpdateObject(bounds), delay);
+	public void UpdateGraphs (Bounds bounds, float delay)
+	{
+		UpdateGraphs (new GraphUpdateObject (bounds), delay);
 	}
 
 	/** Update all graphs using the GraphUpdateObject after \a delay seconds.
@@ -917,14 +952,16 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see batchGraphUpdates
 	 * \see \ref graph-updates
 	 */
-	public void UpdateGraphs (GraphUpdateObject ob, float delay) {
-		StartCoroutine(UpdateGraphsInternal(ob, delay));
+	public void UpdateGraphs (GraphUpdateObject ob, float delay)
+	{
+		StartCoroutine (UpdateGraphsInternal (ob, delay));
 	}
 
 	/** Update all graphs using the GraphUpdateObject after \a delay seconds */
-	IEnumerator UpdateGraphsInternal (GraphUpdateObject ob, float delay) {
-		yield return new WaitForSeconds(delay);
-		UpdateGraphs(ob);
+	IEnumerator UpdateGraphsInternal (GraphUpdateObject ob, float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		UpdateGraphs (ob);
 	}
 
 	/** Update all graphs within \a bounds.
@@ -939,8 +976,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see batchGraphUpdates
 	 * \see \ref graph-updates
 	 */
-	public void UpdateGraphs (Bounds bounds) {
-		UpdateGraphs(new GraphUpdateObject(bounds));
+	public void UpdateGraphs (Bounds bounds)
+	{
+		UpdateGraphs (new GraphUpdateObject (bounds));
 	}
 
 	/** Update all graphs using the GraphUpdateObject.
@@ -951,17 +989,18 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see batchGraphUpdates
 	 * \see \ref graph-updates
 	 */
-	public void UpdateGraphs (GraphUpdateObject ob) {
-		graphUpdates.AddToQueue(ob);
+	public void UpdateGraphs (GraphUpdateObject ob)
+	{
+		graphUpdates.AddToQueue (ob);
 
 		// If we should limit graph updates, start a coroutine which waits until we should update graphs
-		if (batchGraphUpdates && Time.realtimeSinceStartup-lastGraphUpdate < graphUpdateBatchingInterval) {
+		if (batchGraphUpdates && Time.realtimeSinceStartup - lastGraphUpdate < graphUpdateBatchingInterval) {
 			if (!graphUpdateRoutineRunning) {
-				StartCoroutine(DelayedGraphUpdate());
+				StartCoroutine (DelayedGraphUpdate ());
 			}
 		} else {
 			// Otherwise, graph updates should be carried out as soon as possible
-			QueueGraphUpdates();
+			QueueGraphUpdates ();
 		}
 	}
 
@@ -978,10 +1017,11 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * Will not do anything if there are no graph updates queued (not even execute other work items).
 	 */
-	public void FlushGraphUpdates () {
+	public void FlushGraphUpdates ()
+	{
 		if (IsAnyGraphUpdateQueued) {
-			QueueGraphUpdates();
-			FlushWorkItems();
+			QueueGraphUpdates ();
+			FlushWorkItems ();
 		}
 	}
 
@@ -1000,11 +1040,12 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * Will not do anything if there are no queued work items waiting to run.
 	 *
 	  */
-	public void FlushWorkItems () {
-		var graphLock = PausePathfinding();
+	public void FlushWorkItems ()
+	{
+		var graphLock = PausePathfinding ();
 
-		PerformBlockingActions(true);
-		graphLock.Release();
+		PerformBlockingActions (true);
+		graphLock.Release ();
 	}
 
 	/** Make sure work items are executed.
@@ -1017,21 +1058,23 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \deprecated Use #FlushWorkItems() instead.
 	 */
-	[System.Obsolete("Use FlushWorkItems() instead")]
-	public void FlushWorkItems (bool unblockOnComplete, bool block) {
-		var graphLock = PausePathfinding();
+	[System.Obsolete ("Use FlushWorkItems() instead")]
+	public void FlushWorkItems (bool unblockOnComplete, bool block)
+	{
+		var graphLock = PausePathfinding ();
 
 		// Run tasks
-		PerformBlockingActions(block);
-		graphLock.Release();
+		PerformBlockingActions (block);
+		graphLock.Release ();
 	}
 
 	/** Forces thread safe callbacks to run.
 	 * \deprecated Use #FlushWorkItems instead
 	 */
-	[System.Obsolete("Use FlushWorkItems instead")]
-	public void FlushThreadSafeCallbacks () {
-		FlushWorkItems();
+	[System.Obsolete ("Use FlushWorkItems instead")]
+	public void FlushThreadSafeCallbacks ()
+	{
+		FlushWorkItems ();
 	}
 
 	/** Calculates number of threads to use.
@@ -1044,21 +1087,24 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * When running on WebGL this method always returns 0
 	 */
-	public static int CalculateThreadCount (ThreadCount count) {
+	public static int CalculateThreadCount (ThreadCount count)
+	{
 #if UNITY_WEBGL
 		return 0;
 #else
 		if (count == ThreadCount.AutomaticLowLoad || count == ThreadCount.AutomaticHighLoad) {
-			int logicalCores = Mathf.Max(1, SystemInfo.processorCount);
+			int logicalCores = Mathf.Max (1, SystemInfo.processorCount);
 			int memory = SystemInfo.systemMemorySize;
 
 			if (memory <= 0) {
-				Debug.LogError("Machine reporting that is has <= 0 bytes of RAM. This is definitely not true, assuming 1 GiB");
+				Debug.LogError ("Machine reporting that is has <= 0 bytes of RAM. This is definitely not true, assuming 1 GiB");
 				memory = 1024;
 			}
 
-			if (logicalCores <= 1) return 0;
-			if (memory <= 512) return 0;
+			if (logicalCores <= 1)
+				return 0;
+			if (memory <= 512)
+				return 0;
 
 			return 1;
 		} else {
@@ -1072,14 +1118,15 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * Also starts threads if using multithreading
 	 * \see #OnAwakeSettings
 	 */
-	protected override void Awake () {
-		base.Awake();
+	protected override void Awake ()
+	{
+		base.Awake ();
 		// Very important to set this. Ensures the singleton pattern holds
 		active = this;
 
-		if (FindObjectsOfType(typeof(AstarPath)).Length > 1) {
-			Debug.LogError("You should NOT have more than one AstarPath component in the scene at any time.\n" +
-				"This can cause serious errors since the AstarPath component builds around a singleton pattern.");
+		if (FindObjectsOfType (typeof(AstarPath)).Length > 1) {
+			Debug.LogError ("You should NOT have more than one AstarPath component in the scene at any time.\n" +
+			"This can cause serious errors since the AstarPath component builds around a singleton pattern.");
 		}
 
 		// Disable GUILayout to gain some performance, it is not used in the OnGUI call
@@ -1088,34 +1135,36 @@ public class AstarPath : VersionedMonoBehaviour {
 		// This class uses the [ExecuteInEditMode] attribute
 		// So Awake is called even when not playing
 		// Don't do anything when not in play mode
-		if (!Application.isPlaying) return;
+		if (!Application.isPlaying)
+			return;
 
 		if (OnAwakeSettings != null) {
-			OnAwakeSettings();
+			OnAwakeSettings ();
 		}
 
 		// To make sure all graph modifiers have been enabled before scan (to avoid script execution order issues)
-		GraphModifier.FindAllModifiers();
-		RelevantGraphSurface.FindAllGraphSurfaces();
+		GraphModifier.FindAllModifiers ();
+		RelevantGraphSurface.FindAllGraphSurfaces ();
 
-		InitializePathProcessor();
-		InitializeProfiler();
-		ConfigureReferencesInternal();
-		InitializeAstarData();
+		InitializePathProcessor ();
+		InitializeProfiler ();
+		ConfigureReferencesInternal ();
+		InitializeAstarData ();
 
 		// Flush work items, possibly added in InitializeAstarData to load graph data
-		FlushWorkItems();
+		FlushWorkItems ();
 
 		euclideanEmbedding.dirty = true;
 
 		if (scanOnStartup && (!data.cacheStartup || data.file_cachedStartup == null)) {
-			Scan();
+			Scan ();
 		}
 	}
 
 	/** Initializes the #pathProcessor field */
-	void InitializePathProcessor () {
-		int numThreads = CalculateThreadCount(threadCount);
+	void InitializePathProcessor ()
+	{
+		int numThreads = CalculateThreadCount (threadCount);
 
 		// Trying to prevent simple modding to add support for more than one thread
 		if (numThreads > 1) {
@@ -1123,46 +1172,49 @@ public class AstarPath : VersionedMonoBehaviour {
 			numThreads = 1;
 		}
 
-		int numProcessors = Mathf.Max(numThreads, 1);
+		int numProcessors = Mathf.Max (numThreads, 1);
 		bool multithreaded = numThreads > 0;
-		pathProcessor = new PathProcessor(this, pathReturnQueue, numProcessors, multithreaded);
+		pathProcessor = new PathProcessor (this, pathReturnQueue, numProcessors, multithreaded);
 
 		pathProcessor.OnPathPreSearch += path => {
 			var tmp = OnPathPreSearch;
-			if (tmp != null) tmp(path);
+			if (tmp != null)
+				tmp (path);
 		};
 
 		pathProcessor.OnPathPostSearch += path => {
-			LogPathResults(path);
+			LogPathResults (path);
 			var tmp = OnPathPostSearch;
-			if (tmp != null) tmp(path);
+			if (tmp != null)
+				tmp (path);
 		};
 
 		// Sent every time the path queue is unblocked
 		pathProcessor.OnQueueUnblocked += () => {
 			if (euclideanEmbedding.dirty) {
-				euclideanEmbedding.RecalculateCosts();
+				euclideanEmbedding.RecalculateCosts ();
 			}
 		};
 
 		if (multithreaded) {
-			graphUpdates.EnableMultithreading();
+			graphUpdates.EnableMultithreading ();
 		}
 	}
 
 	/** Does simple error checking */
-	internal void VerifyIntegrity () {
+	internal void VerifyIntegrity ()
+	{
 		if (active != this) {
-			throw new System.Exception("Singleton pattern broken. Make sure you only have one AstarPath object in the scene");
+			throw new System.Exception ("Singleton pattern broken. Make sure you only have one AstarPath object in the scene");
 		}
 
 		if (data == null) {
-			throw new System.NullReferenceException("data is null... A* not set up correctly?");
+			throw new System.NullReferenceException ("data is null... A* not set up correctly?");
 		}
 
 		if (data.graphs == null) {
 			data.graphs = new NavGraph[0];
-			data.UpdateShortcuts();
+			data.UpdateShortcuts ();
 		}
 	}
 
@@ -1172,17 +1224,20 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \warning This is mostly for use internally by the system.
 	 */
-	public void ConfigureReferencesInternal () {
+	public void ConfigureReferencesInternal ()
+	{
 		active = this;
-		data = data ?? new AstarData();
-		colorSettings = colorSettings ?? new AstarColor();
-		colorSettings.OnEnable();
+		data = data ?? new AstarData ();
+		colorSettings = colorSettings ?? new AstarColor ();
+		colorSettings.OnEnable ();
 	}
+
 	/** \endcond */
 
 	/** Calls AstarProfiler.InitializeFastProfile */
-	void InitializeProfiler () {
-		AstarProfiler.InitializeFastProfile(new string[14] {
+	void InitializeProfiler ()
+	{
+		AstarProfiler.InitializeFastProfile (new string[14] {
 			"Prepare",          //0
 			"Initialize",       //1
 			"CalculateStep",    //2
@@ -1205,81 +1260,86 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see AstarData.FindGraphTypes
 	 */
-	void InitializeAstarData () {
-		data.FindGraphTypes();
-		data.Awake();
-		data.UpdateShortcuts();
+	void InitializeAstarData ()
+	{
+		data.FindGraphTypes ();
+		data.Awake ();
+		data.UpdateShortcuts ();
 	}
 
 	/** Cleans up meshes to avoid memory leaks */
-	void OnDisable () {
-		gizmos.ClearCache();
+	void OnDisable ()
+	{
+		gizmos.ClearCache ();
 	}
 
 	/** Clears up variables and other stuff, destroys graphs.
 	 * Note that when destroying an AstarPath object, all static variables such as callbacks will be cleared.
 	 */
-	void OnDestroy () {
+	void OnDestroy ()
+	{
 		// This class uses the [ExecuteInEditMode] attribute
 		// So OnDestroy is called even when not playing
 		// Don't do anything when not in play mode
-		if (!Application.isPlaying) return;
+		if (!Application.isPlaying)
+			return;
 
 		if (logPathResults == PathLog.Heavy)
-			Debug.Log("+++ AstarPath Component Destroyed - Cleaning Up Pathfinding Data +++");
+			Debug.Log ("+++ AstarPath Component Destroyed - Cleaning Up Pathfinding Data +++");
 
-		if (active != this) return;
+		if (active != this)
+			return;
 
 		// Block until the pathfinding threads have
 		// completed their current path calculation
-		PausePathfinding();
+		PausePathfinding ();
 
 		euclideanEmbedding.dirty = false;
-		FlushWorkItems();
+		FlushWorkItems ();
 
 		// Don't accept any more path calls to this AstarPath instance.
 		// This will cause all eventual multithreading threads to exit
-		pathProcessor.queue.TerminateReceivers();
+		pathProcessor.queue.TerminateReceivers ();
 
 		if (logPathResults == PathLog.Heavy)
-			Debug.Log("Processing Possible Work Items");
+			Debug.Log ("Processing Possible Work Items");
 
 		// Stop the graph update thread (if it is running)
-		graphUpdates.DisableMultithreading();
+		graphUpdates.DisableMultithreading ();
 
 		// Try to join pathfinding threads
-		pathProcessor.JoinThreads();
+		pathProcessor.JoinThreads ();
 
 		if (logPathResults == PathLog.Heavy)
-			Debug.Log("Returning Paths");
+			Debug.Log ("Returning Paths");
 
 
 		// Return all paths
-		pathReturnQueue.ReturnPaths(false);
+		pathReturnQueue.ReturnPaths (false);
 
 		if (logPathResults == PathLog.Heavy)
-			Debug.Log("Destroying Graphs");
+			Debug.Log ("Destroying Graphs");
 
 
 		// Clean up graph data
-		data.OnDestroy();
+		data.OnDestroy ();
 
 		if (logPathResults == PathLog.Heavy)
-			Debug.Log("Cleaning up variables");
+			Debug.Log ("Cleaning up variables");
 
 		// Clear variables up, static variables are good to clean up, otherwise the next scene might get weird data
 
 		// Clear all callbacks
-		OnAwakeSettings         = null;
-		OnGraphPreScan          = null;
-		OnGraphPostScan         = null;
-		OnPathPreSearch         = null;
-		OnPathPostSearch        = null;
-		OnPreScan               = null;
-		OnPostScan              = null;
-		OnLatePostScan          = null;
-		On65KOverflow           = null;
-		OnGraphsUpdated         = null;
+		OnAwakeSettings = null;
+		OnGraphPreScan = null;
+		OnGraphPostScan = null;
+		OnPathPreSearch = null;
+		OnPathPostSearch = null;
+		OnPreScan = null;
+		OnPostScan = null;
+		OnLatePostScan = null;
+		On65KOverflow = null;
+		OnGraphsUpdated = null;
 
 		active = null;
 	}
@@ -1287,13 +1347,15 @@ public class AstarPath : VersionedMonoBehaviour {
 	#region ScanMethods
 
 	/** Floodfills starting from the specified node */
-	public void FloodFill (GraphNode seed) {
-		graphUpdates.FloodFill(seed);
+	public void FloodFill (GraphNode seed)
+	{
+		graphUpdates.FloodFill (seed);
 	}
 
 	/** Floodfills starting from 'seed' using the specified area */
-	public void FloodFill (GraphNode seed, uint area) {
-		graphUpdates.FloodFill(seed, area);
+	public void FloodFill (GraphNode seed, uint area)
+	{
+		graphUpdates.FloodFill (seed, area);
 	}
 
 	/** Floodfills all graphs and updates areas for every node.
@@ -1301,26 +1363,29 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * are called just 'areas', this method calculates which nodes are in what areas.
 	 * \see Pathfinding.Node.area
 	 */
-	[ContextMenu("Flood Fill Graphs")]
-	public void FloodFill () {
-		Profiler.BeginSample("Recalculate Connected Components");
-		graphUpdates.FloodFill();
-		workItems.OnFloodFill();
-		Profiler.EndSample();
+	[ContextMenu ("Flood Fill Graphs")]
+	public void FloodFill ()
+	{
+		Profiler.BeginSample ("Recalculate Connected Components");
+		graphUpdates.FloodFill ();
+		workItems.OnFloodFill ();
+		Profiler.EndSample ();
 	}
 
 	/** Returns a new global node index.
 	 * \warning This method should not be called directly. It is used by the GraphNode constructor.
 	 */
-	internal int GetNewNodeIndex () {
-		return pathProcessor.GetNewNodeIndex();
+	internal int GetNewNodeIndex ()
+	{
+		return pathProcessor.GetNewNodeIndex ();
 	}
 
 	/** Initializes temporary path data for a node.
 	 * \warning This method should not be called directly. It is used by the GraphNode constructor.
 	 */
-	internal void InitializeNode (GraphNode node) {
-		pathProcessor.InitializeNode(node);
+	internal void InitializeNode (GraphNode node)
+	{
+		pathProcessor.InitializeNode (node);
 	}
 
 	/** Internal method to destroy a given node.
@@ -1329,15 +1394,17 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \warning This method should not be called by user code. It is used internally by the system.
 	 */
-	internal void DestroyNode (GraphNode node) {
-		pathProcessor.DestroyNode(node);
+	internal void DestroyNode (GraphNode node)
+	{
+		pathProcessor.DestroyNode (node);
 	}
 
 	/** Blocks until all pathfinding threads are paused and blocked.
 	 * \deprecated Use #PausePathfinding instead. Make sure to call Release on the returned lock.
 	 */
-	[System.Obsolete("Use PausePathfinding instead. Make sure to call Release on the returned lock.", true)]
-	public void BlockUntilPathQueueBlocked () {
+	[System.Obsolete ("Use PausePathfinding instead. Make sure to call Release on the returned lock.", true)]
+	public void BlockUntilPathQueueBlocked ()
+	{
 	}
 
 	/** Blocks until all pathfinding threads are paused and blocked.
@@ -1349,13 +1416,15 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see #AddWorkItem
 	 */
-	public PathProcessor.GraphUpdateLock PausePathfinding () {
-		return pathProcessor.PausePathfinding(true);
+	public PathProcessor.GraphUpdateLock PausePathfinding ()
+	{
+		return pathProcessor.PausePathfinding (true);
 	}
 
 	/** Blocks the path queue so that e.g work items can be performed */
-	PathProcessor.GraphUpdateLock PausePathfindingSoon () {
-		return pathProcessor.PausePathfinding(false);
+	PathProcessor.GraphUpdateLock PausePathfindingSoon ()
+	{
+		return pathProcessor.PausePathfinding (false);
 	}
 
 	/** Scans a particular graph.
@@ -1368,9 +1437,11 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see \ref graph-updates
 	 * \see ScanAsync
 	 */
-	public void Scan (NavGraph graphToScan) {
-		if (graphToScan == null) throw new System.ArgumentNullException();
-		Scan(new NavGraph[] { graphToScan });
+	public void Scan (NavGraph graphToScan)
+	{
+		if (graphToScan == null)
+			throw new System.ArgumentNullException ();
+		Scan (new NavGraph[] { graphToScan });
 	}
 
 	/** Scans all specified graphs.
@@ -1385,24 +1456,25 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see \ref graph-updates
 	 * \see ScanAsync
 	 */
-	public void Scan (NavGraph[] graphsToScan = null) {
-		var prevProgress = new Progress();
+	public void Scan (NavGraph[] graphsToScan = null)
+	{
+		var prevProgress = new Progress ();
 
-		Profiler.BeginSample("Scan");
-		Profiler.BeginSample("Init");
+		Profiler.BeginSample ("Scan");
+		Profiler.BeginSample ("Init");
 		foreach (var p in ScanAsync(graphsToScan)) {
 			if (prevProgress.description != p.description) {
 #if !NETFX_CORE && UNITY_EDITOR
-				Profiler.EndSample();
-				Profiler.BeginSample(p.description);
+				Profiler.EndSample ();
+				Profiler.BeginSample (p.description);
 				// Log progress to the console
-				System.Console.WriteLine(p.description);
+				System.Console.WriteLine (p.description);
 				prevProgress = p;
 #endif
 			}
 		}
-		Profiler.EndSample();
-		Profiler.EndSample();
+		Profiler.EndSample ();
+		Profiler.EndSample ();
 	}
 
 	/** Scans all graphs.
@@ -1410,10 +1482,11 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see Scan
 	 */
-	[System.Obsolete("ScanLoop is now named ScanAsync and is an IEnumerable<Progress>. Use foreach to iterate over the progress insead")]
-	public void ScanLoop (OnScanStatus statusCallback) {
+	[System.Obsolete ("ScanLoop is now named ScanAsync and is an IEnumerable<Progress>. Use foreach to iterate over the progress insead")]
+	public void ScanLoop (OnScanStatus statusCallback)
+	{
 		foreach (var p in ScanAsync()) {
-			statusCallback(p);
+			statusCallback (p);
 		}
 	}
 
@@ -1428,9 +1501,11 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \astarpro
 	 */
-	public IEnumerable<Progress> ScanAsync (NavGraph graphToScan) {
-		if (graphToScan == null) throw new System.ArgumentNullException();
-		return ScanAsync(new NavGraph[] { graphToScan });
+	public IEnumerable<Progress> ScanAsync (NavGraph graphToScan)
+	{
+		if (graphToScan == null)
+			throw new System.ArgumentNullException ();
+		return ScanAsync (new NavGraph[] { graphToScan });
 	}
 
 	/** Scans all specified graphs asynchronously. This is a IEnumerable, you can loop through it to get the progress
@@ -1446,35 +1521,38 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \astarpro
 	 */
-	public IEnumerable<Progress> ScanAsync (NavGraph[] graphsToScan = null) {
-		if (graphsToScan == null) graphsToScan = graphs;
+	public IEnumerable<Progress> ScanAsync (NavGraph[] graphsToScan = null)
+	{
+		if (graphsToScan == null)
+			graphsToScan = graphs;
 
 		if (graphsToScan == null) {
 			yield break;
 		}
 
-		if (isScanning) throw new System.InvalidOperationException("Another async scan is already running");
+		if (isScanning)
+			throw new System.InvalidOperationException ("Another async scan is already running");
 
 		isScanning = true;
 
-		VerifyIntegrity();
+		VerifyIntegrity ();
 
-		var graphUpdateLock = PausePathfinding();
+		var graphUpdateLock = PausePathfinding ();
 
 		// Make sure all paths that are in the queue to be returned
 		// are returned immediately
 		// Some modifiers (e.g the funnel modifier) rely on
 		// the nodes being valid when the path is returned
-		pathReturnQueue.ReturnPaths(false);
+		pathReturnQueue.ReturnPaths (false);
 
 		if (!Application.isPlaying) {
-			data.FindGraphTypes();
-			GraphModifier.FindAllModifiers();
+			data.FindGraphTypes ();
+			GraphModifier.FindAllModifiers ();
 		}
 
 		int startFrame = Time.frameCount;
 
-		yield return new Progress(0.05F, "Pre processing graphs");
+		yield return new Progress (0.05F, "Pre processing graphs");
 
 		// Yes, this constraint is trivial to circumvent
 		// the code is the same because it is annoying
@@ -1483,69 +1561,71 @@ public class AstarPath : VersionedMonoBehaviour {
 		// I would appreciate if you purchased the pro version of the A* Pathfinding Project
 		// if you need async scanning.
 		if (Time.frameCount != startFrame) {
-			throw new System.Exception("Async scanning can only be done in the pro version of the A* Pathfinding Project");
+			throw new System.Exception ("Async scanning can only be done in the pro version of the A* Pathfinding Project");
 		}
 
 		if (OnPreScan != null) {
-			OnPreScan(this);
+			OnPreScan (this);
 		}
 
-		GraphModifier.TriggerEvent(GraphModifier.EventType.PreScan);
+		GraphModifier.TriggerEvent (GraphModifier.EventType.PreScan);
 
-		data.LockGraphStructure();
+		data.LockGraphStructure ();
 
-		var watch = System.Diagnostics.Stopwatch.StartNew();
+		var watch = System.Diagnostics.Stopwatch.StartNew ();
 
 		// Destroy previous nodes
 		for (int i = 0; i < graphsToScan.Length; i++) {
-			if (graphsToScan[i] != null) {
-				((IGraphInternals)graphsToScan[i]).DestroyAllNodes();
+			if (graphsToScan [i] != null) {
+				((IGraphInternals)graphsToScan [i]).DestroyAllNodes ();
 			}
 		}
 
 		// Loop through all graphs and scan them one by one
 		for (int i = 0; i < graphsToScan.Length; i++) {
 			// Skip null graphs
-			if (graphsToScan[i] == null) continue;
+			if (graphsToScan [i] == null)
+				continue;
 
 			// Just used for progress information
 			// This graph will advance the progress bar from minp to maxp
-			float minp = Mathf.Lerp(0.1F, 0.8F, (float)(i)/(graphsToScan.Length));
-			float maxp = Mathf.Lerp(0.1F, 0.8F, (float)(i+0.95F)/(graphsToScan.Length));
+			float minp = Mathf.Lerp (0.1F, 0.8F, (float)(i) / (graphsToScan.Length));
+			float maxp = Mathf.Lerp (0.1F, 0.8F, (float)(i + 0.95F) / (graphsToScan.Length));
 
-			var progressDescriptionPrefix = "Scanning graph " + (i+1) + " of " + graphsToScan.Length + " - ";
+			var progressDescriptionPrefix = "Scanning graph " + (i + 1) + " of " + graphsToScan.Length + " - ";
 
 			// Like a foreach loop but it gets a little complicated because of the exception
 			// handling (it is not possible to yield inside try-except clause).
-			var coroutine = ScanGraph(graphsToScan[i]).GetEnumerator();
+			var coroutine = ScanGraph (graphsToScan [i]).GetEnumerator ();
 			while (true) {
 				try {
-					if (!coroutine.MoveNext()) break;
+					if (!coroutine.MoveNext ())
+						break;
 				} catch {
 					isScanning = false;
-					data.UnlockGraphStructure();
-					graphUpdateLock.Release();
+					data.UnlockGraphStructure ();
+					graphUpdateLock.Release ();
 					throw;
 				}
-				yield return coroutine.Current.MapTo(minp, maxp, progressDescriptionPrefix);
+				yield return coroutine.Current.MapTo (minp, maxp, progressDescriptionPrefix);
 			}
 		}
 
-		data.UnlockGraphStructure();
-		yield return new Progress(0.8F, "Post processing graphs");
+		data.UnlockGraphStructure ();
+		yield return new Progress (0.8F, "Post processing graphs");
 
 		if (OnPostScan != null) {
-			OnPostScan(this);
+			OnPostScan (this);
 		}
-		GraphModifier.TriggerEvent(GraphModifier.EventType.PostScan);
+		GraphModifier.TriggerEvent (GraphModifier.EventType.PostScan);
 
-		FlushWorkItems();
+		FlushWorkItems ();
 
-		yield return new Progress(0.9F, "Computing areas");
+		yield return new Progress (0.9F, "Computing areas");
 
-		FloodFill();
+		FloodFill ();
 
-		yield return new Progress(0.95F, "Late post processing");
+		yield return new Progress (0.95F, "Late post processing");
 
 		// Signal that we have stopped scanning here
 		// Note that no yields can happen after this point
@@ -1553,48 +1633,49 @@ public class AstarPath : VersionedMonoBehaviour {
 		isScanning = false;
 
 		if (OnLatePostScan != null) {
-			OnLatePostScan(this);
+			OnLatePostScan (this);
 		}
-		GraphModifier.TriggerEvent(GraphModifier.EventType.LatePostScan);
+		GraphModifier.TriggerEvent (GraphModifier.EventType.LatePostScan);
 
 		euclideanEmbedding.dirty = true;
-		euclideanEmbedding.RecalculatePivots();
+		euclideanEmbedding.RecalculatePivots ();
 
 		// Perform any blocking actions
-		FlushWorkItems();
+		FlushWorkItems ();
 		// Resume pathfinding threads
-		graphUpdateLock.Release();
+		graphUpdateLock.Release ();
 
-		watch.Stop();
+		watch.Stop ();
 		lastScanTime = (float)watch.Elapsed.TotalSeconds;
 
-		System.GC.Collect();
+		System.GC.Collect ();
 
 		if (logPathResults != PathLog.None && logPathResults != PathLog.OnlyErrors) {
-			Debug.Log("Scanning - Process took "+(lastScanTime*1000).ToString("0")+" ms to complete");
+			Debug.Log ("Scanning - Process took " + (lastScanTime * 1000).ToString ("0") + " ms to complete");
 		}
 	}
 
-	IEnumerable<Progress> ScanGraph (NavGraph graph) {
+	IEnumerable<Progress> ScanGraph (NavGraph graph)
+	{
 		if (OnGraphPreScan != null) {
-			yield return new Progress(0, "Pre processing");
-			OnGraphPreScan(graph);
+			yield return new Progress (0, "Pre processing");
+			OnGraphPreScan (graph);
 		}
 
-		yield return new Progress(0, "");
+		yield return new Progress (0, "");
 
 		foreach (var p in ((IGraphInternals)graph).ScanInternal()) {
-			yield return p.MapTo(0, 0.95f);
+			yield return p.MapTo (0, 0.95f);
 		}
 
-		yield return new Progress(0.95f, "Assigning graph indices");
+		yield return new Progress (0.95f, "Assigning graph indices");
 
 		// Assign the graph index to every node in the graph
-		graph.GetNodes(node => node.GraphIndex = (uint)graph.graphIndex);
+		graph.GetNodes (node => node.GraphIndex = (uint)graph.graphIndex);
 
 		if (OnGraphPostScan != null) {
-			yield return new Progress(0.99f, "Post processing");
-			OnGraphPostScan(graph);
+			yield return new Progress (0.99f, "Post processing");
+			OnGraphPostScan (graph);
 		}
 	}
 
@@ -1607,9 +1688,10 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \deprecated This method has been renamed to #BlockUntilCalculated.
 	 */
-	[System.Obsolete("This method has been renamed to BlockUntilCalculated")]
-	public static void WaitForPath (Path path) {
-		BlockUntilCalculated(path);
+	[System.Obsolete ("This method has been renamed to BlockUntilCalculated")]
+	public static void WaitForPath (Path path)
+	{
+		BlockUntilCalculated (path);
 	}
 
 	/** Blocks until the path has been calculated.
@@ -1639,23 +1721,26 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \see Pathfinding.Path.WaitForPath
 	 * \see Pathfinding.Path.BlockUntilCalculated
 	 */
-	public static void BlockUntilCalculated (Path path) {
+	public static void BlockUntilCalculated (Path path)
+	{
 		if (active == null)
-			throw new System.Exception("Pathfinding is not correctly initialized in this scene (yet?). " +
-				"AstarPath.active is null.\nDo not call this function in Awake");
+			throw new System.Exception ("Pathfinding is not correctly initialized in this scene (yet?). " +
+			"AstarPath.active is null.\nDo not call this function in Awake");
 
-		if (path == null) throw new System.ArgumentNullException("Path must not be null");
+		if (path == null)
+			throw new System.ArgumentNullException ("Path must not be null");
 
-		if (active.pathProcessor.queue.IsTerminating) return;
+		if (active.pathProcessor.queue.IsTerminating)
+			return;
 
 		if (path.PipelineState == PathState.Created) {
-			throw new System.Exception("The specified path has not been started yet.");
+			throw new System.Exception ("The specified path has not been started yet.");
 		}
 
 		waitForPathDepth++;
 
 		if (waitForPathDepth == 5) {
-			Debug.LogError("You are calling the BlockUntilCalculated function recursively (maybe from a path callback). Please don't do this.");
+			Debug.LogError ("You are calling the BlockUntilCalculated function recursively (maybe from a path callback). Please don't do this.");
 		}
 
 		if (path.PipelineState < PathState.ReturnQueue) {
@@ -1663,28 +1748,28 @@ public class AstarPath : VersionedMonoBehaviour {
 				while (path.PipelineState < PathState.ReturnQueue) {
 					if (active.pathProcessor.queue.IsTerminating) {
 						waitForPathDepth--;
-						throw new System.Exception("Pathfinding Threads seem to have crashed.");
+						throw new System.Exception ("Pathfinding Threads seem to have crashed.");
 					}
 
 					//Wait for threads to calculate paths
-					Thread.Sleep(1);
-					active.PerformBlockingActions(true);
+					Thread.Sleep (1);
+					active.PerformBlockingActions (true);
 				}
 			} else {
 				while (path.PipelineState < PathState.ReturnQueue) {
 					if (active.pathProcessor.queue.IsEmpty && path.PipelineState != PathState.Processing) {
 						waitForPathDepth--;
-						throw new System.Exception("Critical error. Path Queue is empty but the path state is '" + path.PipelineState + "'");
+						throw new System.Exception ("Critical error. Path Queue is empty but the path state is '" + path.PipelineState + "'");
 					}
 
 					//Calculate some paths
-					active.pathProcessor.TickNonMultithreaded();
-					active.PerformBlockingActions(true);
+					active.pathProcessor.TickNonMultithreaded ();
+					active.PerformBlockingActions (true);
 				}
 			}
 		}
 
-		active.pathReturnQueue.ReturnPaths(false);
+		active.pathReturnQueue.ReturnPaths (false);
 		waitForPathDepth--;
 	}
 
@@ -1699,9 +1784,10 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * \note The threadSafe parameter has been deprecated
 	 * \deprecated
 	 */
-	[System.Obsolete("The threadSafe parameter has been deprecated")]
-	public static void RegisterSafeUpdate (System.Action callback, bool threadSafe) {
-		RegisterSafeUpdate(callback);
+	[System.Obsolete ("The threadSafe parameter has been deprecated")]
+	public static void RegisterSafeUpdate (System.Action callback, bool threadSafe)
+	{
+		RegisterSafeUpdate (callback);
 	}
 
 	/** Will send a callback when it is safe to update nodes. This is defined as between the path searches.
@@ -1718,9 +1804,10 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \deprecated Use #AddWorkItem(System.Action) instead. Note the slight change in behavior (mentioned above).
 	 */
-	[System.Obsolete("Use AddWorkItem(System.Action) instead. Note the slight change in behavior (mentioned in the documentation).")]
-	public static void RegisterSafeUpdate (System.Action callback) {
-		active.AddWorkItem(new AstarWorkItem(callback));
+	[System.Obsolete ("Use AddWorkItem(System.Action) instead. Note the slight change in behavior (mentioned in the documentation).")]
+	public static void RegisterSafeUpdate (System.Action callback)
+	{
+		active.AddWorkItem (new AstarWorkItem (callback));
 	}
 
 	/** Adds the path to a queue so that it will be calculated as soon as possible.
@@ -1732,50 +1819,52 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * This can be useful if you have a path which you want to prioritize over all others. Be careful to not overuse it though.
 	 * If too many paths are put in the front of the queue often, this can lead to normal paths having to wait a very long time before being calculated.
 	 */
-	public static void StartPath (Path path, bool pushToFront = false) {
+	public static void StartPath (Path path, bool pushToFront = false)
+	{
 		// Copy to local variable to avoid multithreading issues
 		var astar = active;
 
-		if (System.Object.ReferenceEquals(astar, null)) {
-			Debug.LogError("There is no AstarPath object in the scene or it has not been initialized yet");
+		if (System.Object.ReferenceEquals (astar, null)) {
+			Debug.LogError ("There is no AstarPath object in the scene or it has not been initialized yet");
 			return;
 		}
 
 		if (path.PipelineState != PathState.Created) {
-			throw new System.Exception("The path has an invalid state. Expected " + PathState.Created + " found " + path.PipelineState + "\n" +
-				"Make sure you are not requesting the same path twice");
+			throw new System.Exception ("The path has an invalid state. Expected " + PathState.Created + " found " + path.PipelineState + "\n" +
+			"Make sure you are not requesting the same path twice");
 		}
 
 		if (astar.pathProcessor.queue.IsTerminating) {
-			path.FailWithError("No new paths are accepted");
+			path.FailWithError ("No new paths are accepted");
 			return;
 		}
 
 		if (astar.graphs == null || astar.graphs.Length == 0) {
-			Debug.LogError("There are no graphs in the scene");
-			path.FailWithError("There are no graphs in the scene");
-			Debug.LogError(path.errorLog);
+			Debug.LogError ("There are no graphs in the scene");
+			path.FailWithError ("There are no graphs in the scene");
+			Debug.LogError (path.errorLog);
 			return;
 		}
 
-		path.Claim(astar);
+		path.Claim (astar);
 
 		// Will increment p.state to PathState.PathQueue
-		((IPathInternals)path).AdvanceState(PathState.PathQueue);
+		((IPathInternals)path).AdvanceState (PathState.PathQueue);
 		if (pushToFront) {
-			astar.pathProcessor.queue.PushFront(path);
+			astar.pathProcessor.queue.PushFront (path);
 		} else {
-			astar.pathProcessor.queue.Push(path);
+			astar.pathProcessor.queue.Push (path);
 		}
 	}
 
 	/** Terminates pathfinding threads when the application quits */
-	void OnApplicationQuit () {
-		OnDestroy();
+	void OnApplicationQuit ()
+	{
+		OnDestroy ();
 
 		// Abort threads if they are still running (likely because of some bug in that case)
 		// to make sure that the application can shut down properly
-		pathProcessor.AbortThreads();
+		pathProcessor.AbortThreads ();
 	}
 
 	/**
@@ -1787,8 +1876,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see Pathfinding.NNConstraint
 	 */
-	public NNInfo GetNearest (Vector3 position) {
-		return GetNearest(position, NNConstraint.None);
+	public NNInfo GetNearest (Vector3 position)
+	{
+		return GetNearest (position, NNConstraint.None);
 	}
 
 	/**
@@ -1802,8 +1892,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	 *
 	 * \see Pathfinding.NNConstraint
 	 */
-	public NNInfo GetNearest (Vector3 position, NNConstraint constraint) {
-		return GetNearest(position, constraint, null);
+	public NNInfo GetNearest (Vector3 position, NNConstraint constraint)
+	{
+		return GetNearest (position, constraint, null);
 	}
 
 	/**
@@ -1812,20 +1903,21 @@ public class AstarPath : VersionedMonoBehaviour {
 	 * The NNConstraint can be used to specify constraints on which nodes can be chosen such as only picking walkable nodes.
 	 * \see Pathfinding.NNConstraint
 	 */
-	public NNInfo GetNearest (Vector3 position, NNConstraint constraint, GraphNode hint) {
+	public NNInfo GetNearest (Vector3 position, NNConstraint constraint, GraphNode hint)
+	{
 		// Cache property lookup
 		var graphs = this.graphs;
 
 		float minDist = float.PositiveInfinity;
-		NNInfoInternal nearestNode = new NNInfoInternal();
+		NNInfoInternal nearestNode = new NNInfoInternal ();
 		int nearestGraph = -1;
 
 		if (graphs != null) {
 			for (int i = 0; i < graphs.Length; i++) {
-				NavGraph graph = graphs[i];
+				NavGraph graph = graphs [i];
 
 				// Check if this graph should be searched
-				if (graph == null || !constraint.SuitableGraph(i, graph)) {
+				if (graph == null || !constraint.SuitableGraph (i, graph)) {
 					continue;
 				}
 
@@ -1833,12 +1925,12 @@ public class AstarPath : VersionedMonoBehaviour {
 				if (fullGetNearestSearch) {
 					// Slower nearest node search
 					// this will try to find a node which is suitable according to the constraint
-					nnInfo = graph.GetNearestForce(position, constraint);
+					nnInfo = graph.GetNearestForce (position, constraint);
 				} else {
 					// Fast nearest node search
 					// just find a node close to the position without using the constraint that much
 					// (unless that comes essentially 'for free')
-					nnInfo = graph.GetNearest(position, constraint);
+					nnInfo = graph.GetNearest (position, constraint);
 				}
 
 				GraphNode node = nnInfo.node;
@@ -1849,7 +1941,7 @@ public class AstarPath : VersionedMonoBehaviour {
 				}
 
 				// Distance to the closest point on the node from the requested position
-				float dist = ((Vector3)nnInfo.clampedPosition-position).magnitude;
+				float dist = ((Vector3)nnInfo.clampedPosition - position).magnitude;
 
 				if (prioritizeGraphs && dist < prioritizeGraphsLimit) {
 					// The node is close enough, choose this graph and discard all others
@@ -1870,7 +1962,7 @@ public class AstarPath : VersionedMonoBehaviour {
 
 		// No matches found
 		if (nearestGraph == -1) {
-			return new NNInfo();
+			return new NNInfo ();
 		}
 
 		// Check if a constrained node has already been set
@@ -1879,28 +1971,30 @@ public class AstarPath : VersionedMonoBehaviour {
 			nearestNode.clampedPosition = nearestNode.constClampedPosition;
 		}
 
-		if (!fullGetNearestSearch && nearestNode.node != null && !constraint.Suitable(nearestNode.node)) {
+		if (!fullGetNearestSearch && nearestNode.node != null && !constraint.Suitable (nearestNode.node)) {
 			// Otherwise, perform a check to force the graphs to check for a suitable node
-			NNInfoInternal nnInfo = graphs[nearestGraph].GetNearestForce(position, constraint);
+			NNInfoInternal nnInfo = graphs [nearestGraph].GetNearestForce (position, constraint);
 
 			if (nnInfo.node != null) {
 				nearestNode = nnInfo;
 			}
 		}
 
-		if (!constraint.Suitable(nearestNode.node) || (constraint.constrainDistance && (nearestNode.clampedPosition - position).sqrMagnitude > maxNearestNodeDistanceSqr)) {
-			return new NNInfo();
+		if (!constraint.Suitable (nearestNode.node) || (constraint.constrainDistance && (nearestNode.clampedPosition - position).sqrMagnitude > maxNearestNodeDistanceSqr)) {
+			return new NNInfo ();
 		}
 
 		// Convert to NNInfo which doesn't have all the internal fields
-		return new NNInfo(nearestNode);
+		return new NNInfo (nearestNode);
 	}
 
 	/** Returns the node closest to the ray (slow).
 	 * \warning This function is brute-force and very slow, use with caution
 	 */
-	public GraphNode GetNearest (Ray ray) {
-		if (graphs == null) return null;
+	public GraphNode GetNearest (Ray ray)
+	{
+		if (graphs == null)
+			return null;
 
 		float minDist = Mathf.Infinity;
 		GraphNode nearestNode = null;
@@ -1909,21 +2003,23 @@ public class AstarPath : VersionedMonoBehaviour {
 		Vector3 lineOrigin = ray.origin;
 
 		for (int i = 0; i < graphs.Length; i++) {
-			NavGraph graph = graphs[i];
+			NavGraph graph = graphs [i];
 
-			graph.GetNodes(node => {
+			graph.GetNodes (node => {
 				Vector3 pos = (Vector3)node.position;
-				Vector3 p = lineOrigin+(Vector3.Dot(pos-lineOrigin, lineDirection)*lineDirection);
+				Vector3 p = lineOrigin + (Vector3.Dot (pos - lineOrigin, lineDirection) * lineDirection);
 
-				float tmp = Mathf.Abs(p.x-pos.x);
+				float tmp = Mathf.Abs (p.x - pos.x);
 				tmp *= tmp;
-				if (tmp > minDist) return;
+				if (tmp > minDist)
+					return;
 
-				tmp = Mathf.Abs(p.z-pos.z);
+				tmp = Mathf.Abs (p.z - pos.z);
 				tmp *= tmp;
-				if (tmp > minDist) return;
+				if (tmp > minDist)
+					return;
 
-				float dist = (p-pos).sqrMagnitude;
+				float dist = (p - pos).sqrMagnitude;
 
 				if (dist < minDist) {
 					minDist = dist;

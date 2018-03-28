@@ -47,8 +47,6 @@ namespace UnityStandardAssets._2D
 
 		}
 
-
-
 		private void FixedUpdate ()
 		{
 			// Pass all parameters to the character control script.
