@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour
 {
 
 	public int playerMaxHealth;
 	public int playerCurrentHealth;
+	public float attackDelay;
+
 
 	// Use this for initialization
 	void Start ()
@@ -17,9 +20,10 @@ public class PlayerHealthManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (playerCurrentHealth < 0) {
-			gameObject.SetActive (false);
-
+		if (playerCurrentHealth <= 0) {
+			//gameObject.SetActive (false);
+			SetMaxHealth ();
+			Application.LoadLevel (Application.loadedLevel);
 			//GameManager.reload or spawn
 
 

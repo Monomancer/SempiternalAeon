@@ -33,6 +33,7 @@ namespace UnityStandardAssets._2D
 		// For determining which way the player is currently facing.
 
 		private bool basic_attack;
+		public EdgeCollider2D SwordCollider;
 
 		private DialogueManager dMan;
 
@@ -123,6 +124,11 @@ namespace UnityStandardAssets._2D
 			} else {
 				m_Anim.SetBool ("Basic_Attack", false);
 			}
+		}
+
+		public void SwordAttack ()
+		{
+			SwordCollider.enabled = !SwordCollider.enabled;
 		}
 
 
