@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class DialogueManager : MonoBehaviour
 
 	public string[] dialogueLines;
 	public int currentLine;
+
+	private string npc;
 
 	// Use this for initialization
 	void Start ()
@@ -37,8 +40,11 @@ public class DialogueManager : MonoBehaviour
 				currentLine = 0;
 			}
 
-			dialogueText.text = dialogueLines [currentLine];
-
+			if (npc.Length > 0)
+				dialogueText.text = npc + ": " + dialogueLines [currentLine];
+			else
+				dialogueText.text = dialogueLines [currentLine];
+			
 		}
 	}
 
@@ -54,6 +60,23 @@ public class DialogueManager : MonoBehaviour
 		dialogueActive = true;
 		dialogueBox.SetActive (true);
 		dialogueText.text = dialogue [0];
+		dialogueLines = dialogue;
+	}
+
+	public void ShowDialogueBox (string dialogue, string npcName)
+	{
+		dialogueActive = true;
+		dialogueBox.SetActive (true);
+		npc = npcName;
+		dialogueText.text = npcName + ": " + dialogue;
+	}
+
+	public void ShowDialogueBox (string[] dialogue, string npcName)
+	{
+		dialogueActive = true;
+		dialogueBox.SetActive (true);
+		dialogueText.text = npcName + ": " + dialogue [0];
+		npc = npcName;
 		dialogueLines = dialogue;
 	}
 

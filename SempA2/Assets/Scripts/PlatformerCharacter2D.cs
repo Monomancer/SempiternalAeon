@@ -93,7 +93,7 @@ namespace UnityStandardAssets._2D
 				// Move the character
 				m_Rigidbody2D.velocity = new Vector2 (move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
-				m_Anim.ApplyBuiltinRootMotion ();
+				// m_Anim.ApplyBuiltinRootMotion (); ADD BACK IN IF THIS BREAKS; OTHERWISE JUST FILLING UP CONSOLE
 
 				// If the input is moving the player right and the player is facing left...
 				if (move > 0 && !m_FacingRight) {
@@ -130,11 +130,12 @@ namespace UnityStandardAssets._2D
 		{
 			// Switch the way the player is labelled as facing.
 			m_FacingRight = !m_FacingRight;
+			gameObject.GetComponent<SpriteRenderer> ().flipX = !gameObject.GetComponent<SpriteRenderer> ().flipX;
 
 			// Multiply the player's x local scale by -1.
-			Vector3 theScale = transform.localScale;
+			/*Vector3 theScale = transform.localScale;
 			theScale.x *= -1;
-			transform.localScale = theScale;
+			transform.localScale = theScale;*/
 		}
 	}
 }
