@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - NPC
   - Player
   - Ground
-  - 
-  - 
+  - Enemies
+  - Items
   - 
   - 
   - 

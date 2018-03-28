@@ -17,9 +17,12 @@ public class UIManager : MonoBehaviour
 	{
 		if (!UIExists) {
 			UIExists = true;
-			DontDestroyOnLoad (transform.gameObject);
+
+			// For whatever reason these cause UI elements to be deleted when reloading
+			// scene rather than persisting
+			//DontDestroyOnLoad (transform.gameObject);
 		} else {
-			Destroy (gameObject); 
+			//Destroy (gameObject); 
 		}
 	}
 	
