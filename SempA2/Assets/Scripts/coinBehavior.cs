@@ -25,4 +25,10 @@ public class coinBehavior : MonoBehaviour {
         }
 		
 	}
+
+    //updated once per frame
+    private void FixedUpdate()
+    {
+        
+    }
 }
