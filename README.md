@@ -35,3 +35,10 @@ Follow this link: (link missing)
 Click the download button in the top right to download and extract the folder. Run SempiternalAeon.exe to start the game.
 
 Youtube Link: https://www.youtube.com/watch?v=y_fES-5cM88
+
+
+
+Download Game: 
+https://drive.google.com/drive/folders/1YN2UpRvdii36mZ2bSwV5V9ldXiyM0swA?usp=sharing
+
+unzip file and run sempa.exe
