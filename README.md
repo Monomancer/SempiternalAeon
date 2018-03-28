@@ -30,8 +30,8 @@ I want the game to provide a different experience each time I start over, withou
 
 
 Alpha release instructions: Currently only Windows builds are available.
-Follow this link: (link missing)
+Follow this link: https://drive.google.com/drive/folders/1YN2UpRvdii36mZ2bSwV5V9ldXiyM0swA?usp=sharing
 
-Click the download button in the top right to download and extract the folder. Run SempiternalAeon.exe to start the game.
+Click the download button in the top right to download and extract the folder. Run sempa.exe to start the game.
 
 Youtube Link: https://www.youtube.com/watch?v=y_fES-5cM88
