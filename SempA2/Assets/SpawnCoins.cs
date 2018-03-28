@@ -10,7 +10,7 @@ public class SpawnCoins : MonoBehaviour
     public float xMaxDelta = 10f;
     public float yMinDelta = 0f;
     public float yMaxDelta = 2.5f;
-
+    
 
     //basics of code taken from Unity.com tutorial on basic platformer creation
     //changes and additions author: Benjamin Kauppi
@@ -31,7 +31,7 @@ public class SpawnCoins : MonoBehaviour
         {
 
             Vector2 randomPosition = originPosition + new Vector2(Random.Range(xMinDelta, xMaxDelta), Random.Range(yMinDelta, yMaxDelta));
-            Instantiate(coin, randomPosition, Quaternion.identity);
+            Object.Instantiate(coin, randomPosition, Quaternion.identity);
             originPosition = randomPosition;
         }
     }

@@ -14,21 +14,32 @@ public class coinBehavior : MonoBehaviour {
         coin = GetComponent<Transform>();
 
     }
-	
+	/*
 	// Update is called once per frame
 	void Update () {
-
+        
         if (Math.Abs(player.position.x - coin.position.x) < .1 && Math.Abs(player.position.y - coin.position.y) < .1)
         {
             CoinCounter.incrementCoinCount();
             Destroy(gameObject);
         }
+        
 		
 	}
-
-    //updated once per frame
-    private void FixedUpdate()
+    */
+    void OnCollisionEnter2D(Collision2D col)
     {
-        
+        if (col.gameObject.tag == "Player")
+        {
+            CoinCounter.incrementCoinCount();
+            Destroy(gameObject);
+        }
     }
+    
+        //updated once per frame
+        private void FixedUpdate()
+        {
+
+        }
+        
 }
