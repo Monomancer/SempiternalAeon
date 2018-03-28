@@ -6,20 +6,22 @@ using UnityEngine.UI;
 
 public class CoinCounter : MonoBehaviour {
 
-    public Transform player;
+    //to reference text in canvas coin object
     private static Text coinText;
+
+    //count for number of coins
     private static int coinCount = 0;
 
 	// Use this for initialization
 	void Start () {
-        coinText = GetComponent<Text>();
-        coinText.text = "Coins: " + "0";
+        coinText = GetComponent<Text>(); //get text object
+        coinText.text = "Coins: " + "0"; //set display to 0 coins
 
     }
 
     public static void incrementCoinCount() {
-            coinCount++;
-            coinText.text = "Coins: " + coinCount.ToString();
+            coinCount++; //increment coin count
+            coinText.text = "Coins: " + coinCount.ToString(); //set display to new coin count
         
     }
 }

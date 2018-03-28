@@ -23,10 +23,10 @@ public class coinBehavior : MonoBehaviour {
     
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player")  //player has collided with coin
         {
-            CoinCounter.incrementCoinCount();
-            Destroy(gameObject);
+            CoinCounter.incrementCoinCount(); //add 1 coin to the coin count on the display (canvas)
+            Destroy(gameObject); //destroy coin because we picked it up
         }
     }
     
