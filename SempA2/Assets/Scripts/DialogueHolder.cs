@@ -5,12 +5,11 @@ using UnityEngine;
 public class DialogueHolder : MonoBehaviour
 {
 
-
+	public string npcName;
 	public string dialogue;
 	public string[] dialogueArray;
 	private DialogueManager dMan;
 	public bool inDialogueRange = false;
-
 
 	// Use this for initialization
 	void Start ()
@@ -29,9 +28,17 @@ public class DialogueHolder : MonoBehaviour
 				if (dialogue.Length > 0 && dialogueArray.Length > 0) {
 					Debug.Log ("More than one dialogue size!"); 
 				} else if (dialogue.Length > 0) { 
-					dMan.ShowDialogueBox (dialogue);
+					if (npcName.Length > 0) {
+						dMan.ShowDialogueBox (dialogue, npcName);
+					} else {
+						dMan.ShowDialogueBox (dialogue);
+					}
 				} else {
-					dMan.ShowDialogueBox (dialogueArray);
+					if (npcName.Length > 0) {
+						dMan.ShowDialogueBox (dialogueArray, npcName);
+					} else {
+						dMan.ShowDialogueBox (dialogueArray);
+					}
 				}
 			}
 		}

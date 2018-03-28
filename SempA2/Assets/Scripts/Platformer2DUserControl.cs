@@ -8,12 +8,12 @@ namespace UnityStandardAssets._2D
 	public class Platformer2DUserControl : MonoBehaviour
 	{
 		private PlatformerCharacter2D m_Character;
-		private Rigidbody2D m_Rigidbody2D;
 
 		private bool m_Jump;
 
 		private bool basic_attack;
 		private DialogueManager dMan;
+		private PauseMenu pMenu;
 		private bool crouch;
 		private float h;
 
@@ -22,7 +22,7 @@ namespace UnityStandardAssets._2D
 		{
 			m_Character = GetComponent<PlatformerCharacter2D> ();
 			dMan = FindObjectOfType<DialogueManager> ();
-			m_Rigidbody2D = GetComponent<Rigidbody2D> ();
+			pMenu = FindObjectOfType<PauseMenu> ();
 		}
 
 
@@ -37,7 +37,7 @@ namespace UnityStandardAssets._2D
 				basic_attack = CrossPlatformInputManager.GetButtonDown ("Basic_Attack");
 			}
 
-			if (!dMan.dialogueActive) {
+			if (!dMan.dialogueActive && !pMenu.isPaused) {
 				crouch = Input.GetKey (KeyCode.CapsLock);
 				h = CrossPlatformInputManager.GetAxis ("Horizontal");
 			} else {
