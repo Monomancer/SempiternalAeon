@@ -604,6 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f1d98ac50f38749b5d02b98a8919a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: grassy
 --- !u!1 &1878990105
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +760,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1969476038}
   - component: {fileID: 1969476037}
+  - component: {fileID: 1969476040}
+  - component: {fileID: 1969476039}
+  - component: {fileID: 1969476041}
   m_Layer: 0
   m_Name: house
   m_TagString: Untagged
@@ -823,3 +827,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969476039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1969476036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8ef89f3e9639343af3941f59f49339, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1969476040
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1969476036}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.09820388, y: -0.36407328}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.87, y: 1.08}
+    newSize: {x: 0.87, y: 1.08}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.35742345, y: 0.43808138}
+  m_EdgeRadius: 0
+--- !u!114 &1969476041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1969476036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39f1d98ac50f38749b5d02b98a8919a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: quest
