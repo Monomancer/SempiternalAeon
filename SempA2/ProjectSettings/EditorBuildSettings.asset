@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/town scene maybe.unity
+    guid: 1057ac062c4d5b6479b1e9340a3cdf6f
+  - enabled: 1
+    path: Assets/Scenes/Grassy Scene.unity
+    guid: 19b086776d92775428c3917ad065abfb
