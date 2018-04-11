@@ -48,13 +48,13 @@ public class MonsterAI : MonoBehaviour
 	bool m_FacingRight = true;
 
 	//animator
-	Animator anim;
+	//Animator anim;
 
 	void Start ()
 	{
 		seeker = GetComponent<Seeker> ();
 		rb = GetComponent<Rigidbody2D> ();
-		anim = GetComponent<Animator> ();
+		//anim = GetComponent<Animator> ();
 
 		if (target == null) {
 			Debug.LogError ("No player found");
@@ -91,9 +91,6 @@ public class MonsterAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		
-
-        
 		if ((target == null || Math.Abs (target.position.magnitude - rb.position.magnitude) > 2) && !active) {
 			if (Time.time - time > 4) {
 				rightDirection = !rightDirection;
@@ -162,9 +159,6 @@ public class MonsterAI : MonoBehaviour
 				currentWaypoint++;
 				return;
 			}
-
-
-
 		}
 	}
 

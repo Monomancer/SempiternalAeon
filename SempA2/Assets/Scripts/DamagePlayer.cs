@@ -6,59 +6,54 @@ using UnityEngine;
 public class DamagePlayer : MonoBehaviour
 {
 	public int damage;
-	public Animator anim;
+	private Animator anim;
 
 	// 0.5 && 0.2 respectively are decent for small mobs
 	public float xDetection;
 	public float yDetection;
 	private float attackDelay;
 
-	private Transform target;
-	private Rigidbody2D rb;
-	private bool inRange;
+	private GameObject target;
 
 	// Use this for initialization
 	void Start ()
 	{
-		target = GameObject.FindGameObjectWithTag ("Player").transform;
+		target = GameObject.FindGameObjectWithTag ("Player");
 		anim = GetComponent<Animator> ();
-		rb = GetComponent<Rigidbody2D> ();
 		
 	}
 	
 	// Update is called once per frame
 	void Update ()
-	{
-		if (Math.Abs (target.position.x - rb.position.x) < xDetection && Math.Abs (target.position.y - rb.position.y) < yDetection) {
-			anim.SetBool ("attack", true);
-		} else {
-			anim.SetBool ("attack", false);
-		}			
-		//anim.SetBool ("attacK", inRange);
-		//Debug.Log (inRange);
+	{		
 		
 	}
 
-	/*void OnCollisionEnter2D (Collision2D collider)
+	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (collider.gameObject.name == "Player") {
-			Debug.Log ("enter");
-
-			inRange = true;
-		}		
+		if (other.tag == "Player") {
+			anim.SetBool ("attack", true);
+			anim.Play ("Attack");
+		}
 	}
 
-	void OnCollisionExit2D (Collision2D collider)
+	void OnTriggerStay2D (Collider2D other)
 	{
-		if (collider.gameObject.name == "Player") {
-			Debug.Log ("exit");
-			inRange = false;
-		}	
+		if (other.tag == "Player") {
+			anim.SetBool ("attack", true);
+		}
+	}
 
-	}*/
+	void OnTriggerExit2D (Collider2D other)
+	{
+		if (other.tag == "Player") {
+			anim.SetBool ("attack", false);
+		}	
+	}
 
 	void AttackPlayer ()
 	{
+		//Debug.Log (target.tag);
 		target.GetComponent <PlayerHealthManager> ().TakeDamage (damage);
 	}
 }

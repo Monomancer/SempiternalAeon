@@ -9,7 +9,7 @@ public class PlayerHealthManager : MonoBehaviour
 	public int playerMaxHealth;
 	public int playerCurrentHealth;
 	public float attackDelay;
-
+	public GameObject combatText;
 
 	// Use this for initialization
 	void Start ()
@@ -20,23 +20,29 @@ public class PlayerHealthManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (playerCurrentHealth <= 0) {
-			//gameObject.SetActive (false);
-			SetMaxHealth ();
-			Application.LoadLevel (Application.loadedLevel);
-			//GameManager.reload or spawn
-
-
-		}
 	}
 
 	public void TakeDamage (int damage)
 	{
 		playerCurrentHealth -= damage;
+		var clone = (GameObject)Instantiate (combatText);
+		clone.transform.position = gameObject.transform.position;
+		clone.GetComponent<FloatingNumbers> ().damageNumber = damage;
+		clone.GetComponent<FloatingNumbers> ().setColor (Color.red);
+		if (playerCurrentHealth <= 0) {
+			SetMaxHealth ();
+			Die (); 
+		}
 	}
 
 	public void SetMaxHealth ()
 	{
 		playerCurrentHealth = playerMaxHealth;
+	}
+
+	public void Die ()
+	{
+		Application.LoadLevel (Application.loadedLevel);
+
 	}
 }

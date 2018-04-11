@@ -44,24 +44,6 @@ public class DialogueHolder : MonoBehaviour
 		}
 	}
 
-	/*void OnTriggerStay2D (Collider2D other)
-	{
-		if (other.gameObject.name == "Player") {
-			if (Input.GetKeyDown (KeyCode.E)) { 
-				if (!dMan.dialogueActive) {
-					dMan.ActivateDialogueBox ();
-				}
-				if (dialogue.Length > 0 && dialogueArray.Length > 0) {
-					Debug.Log ("More than one dialogue size!"); 
-				} else if (dialogue.Length > 0) { 
-					dMan.ShowDialogueBox (dialogue);
-				} else {
-					dMan.ShowDialogueBox (dialogueArray);
-				}
-			}
-		}
-	}*/
-
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.gameObject.name == "Player") {

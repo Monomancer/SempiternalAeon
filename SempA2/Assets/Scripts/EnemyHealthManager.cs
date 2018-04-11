@@ -7,57 +7,62 @@ public class EnemyHealthManager : MonoBehaviour
 
 	public int enemyMaxHealth;
 	public int enemyCurrentHealth;
-	Animator anim;
+	public int experience;
+	public GameObject[] loot;
+	public GameObject combatText;
+	private Animator anim;
 
-
-	// Use this for initialization
 	void Start ()
 	{
-		enemyCurrentHealth = enemyMaxHealth;
+		SetMaxHealth ();
 		anim = GetComponent <Animator> ();
+
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
-		if (enemyCurrentHealth <= 0) {
-			/*GetComponent<DamagePlayer> ().enabled = false;
-			GetComponent<MonsterAI> ().enabled = false;
-			anim.SetBool ("attack", false);*/
-			anim.Play ("die");
-			Destroy (gameObject, 1f);
-
-		}
 	}
 
 	public void TakeDamage (int damage)
 	{
 		enemyCurrentHealth -= damage;
-	}
-
-	public void OnTriggerEnter2D (Collider2D other)
-	{
-		Debug.Log (other.tag);
-		if (other.tag == "Sword") {
-			anim.Play ("hit");
-			TakeDamage (10);
+		var clone = (GameObject)Instantiate (combatText);
+		clone.transform.position = gameObject.transform.position;
+		clone.GetComponent<FloatingNumbers> ().damageNumber = damage;
+		if (enemyCurrentHealth <= 0) {
+			Die ();
 		}
 	}
-	/*public void OnCollisionEnter2D (Collision2D other)
-	{
-		Debug.Log (other.gameObject.tag);
-		if (other.gameObject.tag == "Sword") {
 
-		}
-	}*/
-
-	public void SetMaxHealth ()
+	void SetMaxHealth ()
 	{
 		enemyCurrentHealth = enemyMaxHealth;
 	}
 
-	public void Die ()
+	void Die ()
 	{
-		Destroy (gameObject);
+		anim.SetBool ("attack", false);
+		anim.Play ("die");
+		SpawnLoot ();
+		GrantExperience ();
+		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+		Destroy (gameObject, 1f);
+	}
+
+	void SpawnLoot ()
+	{
+		float lootPosOffset = 0f;
+		foreach (GameObject drop in loot) {
+			Transform pos = gameObject.transform;
+			pos.position.Set (pos.position.x + lootPosOffset, pos.position.y, pos.position.z);
+			Instantiate (drop, pos.position, Quaternion.identity);
+			lootPosOffset += 0.1f;
+		}
+	}
+
+	void GrantExperience ()
+	{
+		
+		
 	}
 }
