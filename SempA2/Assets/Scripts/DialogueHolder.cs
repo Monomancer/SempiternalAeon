@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Security.Cryptography.X509Certificates;
+using System;
+using UnityEditor.VersionControl;
 
 public class DialogueHolder : MonoBehaviour
 {
 
 	public string npcName;
-	public string dialogue;
 	public string[] dialogueArray;
 	private DialogueManager dMan;
-	public bool inDialogueRange = false;
+	public bool hasMonsterQuest = false;
+	public String monsterName;
+	public int amount, experience;
+	private bool inDialogueRange = false;
 
 	// Use this for initialization
 	void Start ()
@@ -22,18 +27,13 @@ public class DialogueHolder : MonoBehaviour
 	{
 		if (inDialogueRange) {
 			if (Input.GetKeyDown (KeyCode.E)) { 
+				/*if (hasMonsterQuest) {
+					dMan.MonsterQuestOptional (ScriptableObject.CreateInstance (name, amount, experience));
+				}*/
 				if (!dMan.dialogueActive) {
 					dMan.ActivateDialogueBox ();
 				}
-				if (dialogue.Length > 0 && dialogueArray.Length > 0) {
-					Debug.Log ("More than one dialogue size!"); 
-				} else if (dialogue.Length > 0) { 
-					if (npcName.Length > 0) {
-						dMan.ShowDialogueBox (dialogue, npcName);
-					} else {
-						dMan.ShowDialogueBox (dialogue);
-					}
-				} else {
+				if (dialogueArray.Length > 0) { 
 					if (npcName.Length > 0) {
 						dMan.ShowDialogueBox (dialogueArray, npcName);
 					} else {
@@ -56,5 +56,10 @@ public class DialogueHolder : MonoBehaviour
 		if (other.gameObject.name == "Player") {
 			inDialogueRange = false;	
 		}
+	}
+
+	public MonsterQuest GetQuest ()
+	{
+		return null;
 	}
 }

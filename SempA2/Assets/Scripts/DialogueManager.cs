@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEditor.VersionControl;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -14,8 +15,11 @@ public class DialogueManager : MonoBehaviour
 
 	public string[] dialogueLines;
 	public int currentLine;
+	public bool hasQuest = false;
 
 	private string npc;
+	private MonsterQuest monsterQuest;
+
 
 	// Use this for initialization
 	void Start ()
@@ -34,6 +38,18 @@ public class DialogueManager : MonoBehaviour
 				currentLine--;
 			}
 
+			if (currentLine == (dialogueLines.Length - 1) && hasQuest) {
+				if (Input.GetKeyDown (KeyCode.Y)) {
+					this.AccceptQuest ();
+					dialogueBox.SetActive (false);
+					dialogueActive = false;
+					currentLine = 0;
+				} else if (Input.GetKeyDown (KeyCode.N)) {
+					dialogueBox.SetActive (false);
+					dialogueActive = false;
+					currentLine = 0;
+				}	
+			}
 			if (Input.GetKeyDown (KeyCode.Space) || currentLine >= dialogueLines.Length) {
 				dialogueBox.SetActive (false);
 				dialogueActive = false;
@@ -44,15 +60,7 @@ public class DialogueManager : MonoBehaviour
 				dialogueText.text = npc + ": " + dialogueLines [currentLine];
 			else
 				dialogueText.text = dialogueLines [currentLine];
-			
 		}
-	}
-
-	public void ShowDialogueBox (string dialogue)
-	{
-		dialogueActive = true;
-		dialogueBox.SetActive (true);
-		dialogueText.text = dialogue;
 	}
 
 	public void ShowDialogueBox (string[] dialogue)
@@ -61,14 +69,6 @@ public class DialogueManager : MonoBehaviour
 		dialogueBox.SetActive (true);
 		dialogueText.text = dialogue [0];
 		dialogueLines = dialogue;
-	}
-
-	public void ShowDialogueBox (string dialogue, string npcName)
-	{
-		dialogueActive = true;
-		dialogueBox.SetActive (true);
-		npc = npcName;
-		dialogueText.text = npcName + ": " + dialogue;
 	}
 
 	public void ShowDialogueBox (string[] dialogue, string npcName)
@@ -90,5 +90,16 @@ public class DialogueManager : MonoBehaviour
 	{
 		return dialogueActive;
 
+	}
+
+	public void MonsterQuestOptional (MonsterQuest quest)
+	{
+		hasQuest = true;
+		monsterQuest = quest;
+	}
+
+	private void AccceptQuest ()
+	{
+		GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestManager> ().AddMonsterQuest (monsterQuest);
 	}
 }

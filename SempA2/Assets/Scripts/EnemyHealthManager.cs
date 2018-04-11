@@ -5,12 +5,14 @@ using UnityEngine;
 public class EnemyHealthManager : MonoBehaviour
 {
 
+	public float knockBackAmount;
 	public int enemyMaxHealth;
 	public int enemyCurrentHealth;
 	public int experience;
 	public GameObject[] loot;
 	public GameObject combatText;
 	private Animator anim;
+
 
 	void Start ()
 	{
@@ -32,6 +34,13 @@ public class EnemyHealthManager : MonoBehaviour
 		if (enemyCurrentHealth <= 0) {
 			Die ();
 		}
+		float knockVelocity;
+		if (gameObject.GetComponent<MonsterAI> ().m_FacingRight) { 
+			knockVelocity = knockBackAmount * -1;
+		} else {
+			knockVelocity = knockBackAmount;
+		}
+		gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (knockVelocity, 0));
 	}
 
 	void SetMaxHealth ()
@@ -45,6 +54,7 @@ public class EnemyHealthManager : MonoBehaviour
 		anim.Play ("die");
 		SpawnLoot ();
 		GrantExperience ();
+		// GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestManager> ().UpdateMonsterQuest (gameObject.GetComponent<MonsterAI> ().monsterName);
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
 		Destroy (gameObject, 1f);
 	}
@@ -62,7 +72,6 @@ public class EnemyHealthManager : MonoBehaviour
 
 	void GrantExperience ()
 	{
-		
-		
+		GameObject.FindGameObjectWithTag ("Player").GetComponent<SkillManager> ().IncreaseLevelExperience (experience);	
 	}
 }

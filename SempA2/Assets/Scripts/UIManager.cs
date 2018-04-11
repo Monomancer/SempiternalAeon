@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
 	public Text healthText;
 	public PlayerHealthManager ph;
 	public GameObject tabMenu;
+	public GameObject levelUpText;
 	public Boolean inMenu = false;
 
 	private static bool UIExists;
@@ -53,5 +54,18 @@ public class UIManager : MonoBehaviour
 		tabMenu.SetActive (false);
 
 
+	}
+
+	public void ShowLevelText ()
+	{
+		levelUpText.SetActive (true);
+		StartCoroutine (RemoveAfterSeconds (5, levelUpText));
+
+	}
+
+	IEnumerator RemoveAfterSeconds (int seconds, GameObject obj)
+	{
+		yield return new WaitForSeconds (seconds);
+		obj.SetActive (false);
 	}
 }

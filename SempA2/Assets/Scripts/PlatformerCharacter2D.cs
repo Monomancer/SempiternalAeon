@@ -29,11 +29,11 @@ namespace UnityStandardAssets._2D
 		private Animator m_Anim;
 		// Reference to the player's animator component.
 		private Rigidbody2D m_Rigidbody2D;
-		private bool m_FacingRight = true;
+		public bool m_FacingRight = true;
 		// For determining which way the player is currently facing.
 
 		private bool basic_attack;
-		public EdgeCollider2D SwordCollider;
+		public EdgeCollider2D WeaponCollider;
 
 		private DialogueManager dMan;
 
@@ -126,9 +126,14 @@ namespace UnityStandardAssets._2D
 			}
 		}
 
-		public void SwordAttack ()
+		public void DisableWeaponCollider ()
 		{
-			SwordCollider.enabled = !SwordCollider.enabled;
+			WeaponCollider.enabled = false;
+		}
+
+		public void EnableWeaponCollider ()
+		{
+			WeaponCollider.enabled = true;
 		}
 
 
@@ -136,12 +141,12 @@ namespace UnityStandardAssets._2D
 		{
 			// Switch the way the player is labelled as facing.
 			m_FacingRight = !m_FacingRight;
-			gameObject.GetComponent<SpriteRenderer> ().flipX = !gameObject.GetComponent<SpriteRenderer> ().flipX;
+			//gameObject.GetComponent<SpriteRenderer> ().flipX = !gameObject.GetComponent<SpriteRenderer> ().flipX;
 
 			// Multiply the player's x local scale by -1.
-			/*Vector3 theScale = transform.localScale;
+			Vector3 theScale = transform.localScale;
 			theScale.x *= -1;
-			transform.localScale = theScale;*/
+			transform.localScale = theScale;
 		}
 	}
 }

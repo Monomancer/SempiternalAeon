@@ -7,12 +7,6 @@ public class DamagePlayer : MonoBehaviour
 {
 	public int damage;
 	private Animator anim;
-
-	// 0.5 && 0.2 respectively are decent for small mobs
-	public float xDetection;
-	public float yDetection;
-	private float attackDelay;
-
 	private GameObject target;
 
 	// Use this for initialization
@@ -53,7 +47,6 @@ public class DamagePlayer : MonoBehaviour
 
 	void AttackPlayer ()
 	{
-		//Debug.Log (target.tag);
 		target.GetComponent <PlayerHealthManager> ().TakeDamage (damage);
 	}
 }

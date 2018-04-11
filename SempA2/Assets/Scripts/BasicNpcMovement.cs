@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityStandardAssets._2D;
 
 public class BasicNpcMovement : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class BasicNpcMovement : MonoBehaviour
 			}
 		} else {
 			//Player is in dialogue with NPC, turn towards player
-			gameObject.GetComponent<SpriteRenderer> ().flipX = !GameObject.FindGameObjectWithTag ("Player").GetComponent<SpriteRenderer> ().flipX;
+			gameObject.GetComponent<SpriteRenderer> ().flipX = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlatformerCharacter2D> ().m_FacingRight;
 
 			m_Anim.SetFloat ("Speed", 0);
 			isWalking = false;

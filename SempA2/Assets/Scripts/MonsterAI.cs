@@ -12,6 +12,8 @@ public class MonsterAI : MonoBehaviour
 	//What to chase
 	public Transform target;
 
+	public string monsterName;
+
 	//Path update rate
 	public float updateRate = 2f;
 
@@ -45,7 +47,7 @@ public class MonsterAI : MonoBehaviour
 	bool rightDirection = true;
 
 	//true if monster is facing right
-	bool m_FacingRight = true;
+	public bool m_FacingRight = true;
 
 	//animator
 	//Animator anim;
@@ -91,7 +93,8 @@ public class MonsterAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		if ((target == null || Math.Abs (target.position.magnitude - rb.position.magnitude) > 2) && !active) {
+		if ((target == null || Math.Abs (target.position.magnitude - rb.position.magnitude) > 3)) {
+			//active = false;
 			if (Time.time - time > 4) {
 				rightDirection = !rightDirection;
 				time = Time.time;
@@ -116,7 +119,7 @@ public class MonsterAI : MonoBehaviour
 
 			return;
 		} else {
-			active = true;
+			//active = true;
 
 			if (target.position.x - rb.position.x >= 0) { // if true then player is to the right of monster
 				if (!m_FacingRight) {
