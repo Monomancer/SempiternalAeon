@@ -12,6 +12,7 @@ namespace UnityStandardAssets._2D
 		private bool m_Jump;
 
 		private bool basic_attack;
+		private bool jump_attack;
 		private DialogueManager dMan;
 		private PauseMenu pMenu;
 		private bool crouch;
@@ -35,6 +36,10 @@ namespace UnityStandardAssets._2D
 			}
 			if (!basic_attack) {
 				basic_attack = CrossPlatformInputManager.GetButtonDown ("Basic_Attack");
+			} 
+
+			if (!jump_attack) {
+				jump_attack = CrossPlatformInputManager.GetButtonDown ("Basic_Attack");
 			}
 
 			if (!dMan.dialogueActive && !pMenu.isPaused) {
@@ -52,7 +57,9 @@ namespace UnityStandardAssets._2D
 			// Pass all parameters to the character control script.
 			m_Character.Move (h, crouch, m_Jump);
 			m_Character.Basic_Attack (basic_attack, h);
+			m_Character.Jump_Attack (jump_attack, h);
 			basic_attack = false;
+			jump_attack = false;
 			m_Jump = false;
 		}
 	}

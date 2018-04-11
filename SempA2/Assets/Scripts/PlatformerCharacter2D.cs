@@ -34,6 +34,7 @@ namespace UnityStandardAssets._2D
 
 		private bool basic_attack;
 		public EdgeCollider2D WeaponCollider;
+		public EdgeCollider2D JumpWeaponCollider;
 
 		private DialogueManager dMan;
 
@@ -63,9 +64,6 @@ namespace UnityStandardAssets._2D
 
 			// Set the vertical animation
 			m_Anim.SetFloat ("vSpeed", m_Rigidbody2D.velocity.y);
-
-            
-
 
 		}
 
@@ -118,12 +116,27 @@ namespace UnityStandardAssets._2D
 
 		public void Basic_Attack (bool attack, float move)
 		{
-			if (attack) {
+			if (attack && m_Grounded) {
 				m_Anim.SetBool ("Basic_Attack", true);
 				m_Anim.SetFloat ("Speed", 0);
 			} else {
 				m_Anim.SetBool ("Basic_Attack", false);
 			}
+		}
+
+		public void Jump_Attack (bool attack, float move)
+		{
+			if (attack && !m_Grounded) {
+				//Debug.Log ("in");
+				m_Anim.SetBool ("Jump_Attack", true);
+				m_Anim.SetFloat ("Speed", 0);
+			} 
+		}
+
+		public void DisableJumpAttack ()
+		{ 
+			m_Anim.SetBool ("Jump_Attack", false);
+				
 		}
 
 		public void DisableWeaponCollider ()
@@ -134,6 +147,16 @@ namespace UnityStandardAssets._2D
 		public void EnableWeaponCollider ()
 		{
 			WeaponCollider.enabled = true;
+		}
+
+		public void DisableJumpWeaponCollider ()
+		{
+			JumpWeaponCollider.enabled = false;
+		}
+
+		public void EnableJumpWeaponCollider ()
+		{
+			JumpWeaponCollider.enabled = true;
 		}
 
 
