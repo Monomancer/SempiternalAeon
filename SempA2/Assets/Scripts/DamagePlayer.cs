@@ -23,7 +23,7 @@ public class DamagePlayer : MonoBehaviour
 		
 	}
 
-	void OnTriggerEnter2D (Collider2D other)
+	/*void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
 			anim.SetBool ("attack", true);
@@ -43,7 +43,30 @@ public class DamagePlayer : MonoBehaviour
 		if (other.tag == "Player") {
 			anim.SetBool ("attack", false);
 		}	
+	}*/
+
+	void OnCollisionEnter2D (Collision2D other)
+	{
+		if (other.gameObject.tag == "Player") {
+			anim.SetBool ("attack", true);
+			anim.Play ("Attack");
+		}
 	}
+
+	void OnCollisionStay2D (Collision2D other)
+	{
+		if (other.gameObject.tag == "Player") {
+			anim.SetBool ("attack", true);
+		}
+	}
+
+	void OnCollisionExit2D (Collision2D other)
+	{
+		if (other.gameObject.tag == "Player") {
+			anim.SetBool ("attack", false);
+		}	
+	}
+
 
 	void AttackPlayer ()
 	{

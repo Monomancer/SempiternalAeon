@@ -38,7 +38,7 @@ public class MonsterAI : MonoBehaviour
 	private int currentWaypoint = 0;
 
 	//If monster is chasing or not
-	bool active = false;
+	//bool active = false;
 
 	//for Time.deltaTime calculations
 	float time = 0;

@@ -129,8 +129,11 @@ namespace UnityStandardAssets._2D
 			if (attack && !m_Grounded) {
 				//Debug.Log ("in");
 				m_Anim.SetBool ("Jump_Attack", true);
+
 				m_Anim.SetFloat ("Speed", 0);
-			} 
+			} else if (m_Grounded) {
+				m_Anim.SetBool ("Jump_Attack", false);
+			}
 		}
 
 		public void DisableJumpAttack ()

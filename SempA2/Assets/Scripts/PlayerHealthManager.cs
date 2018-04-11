@@ -44,13 +44,13 @@ public class PlayerHealthManager : MonoBehaviour
 		}
 
 		// Buggy implementation on player. Need to halt movement script until pushback over.
-		float knockVelocity;
+		/*float knockVelocity;
 		if (gameObject.GetComponent<PlatformerCharacter2D> ().m_FacingRight) { 
 			knockVelocity = knockBackAmount * -1;
 		} else {
 			knockVelocity = knockBackAmount;
 		}
-		gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (knockVelocity, 0f));
+		gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (knockVelocity, 0f));*/
 	}
 
 	public void SetMaxHealth ()

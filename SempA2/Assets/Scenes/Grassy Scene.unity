@@ -1202,6 +1202,21 @@ Prefab:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 588543421}
+    - target: {fileID: 58271848946169104, guid: d54702d0f2e5f8648a1f72fd2349232b,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114616270911512548, guid: d54702d0f2e5f8648a1f72fd2349232b,
+        type: 2}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114027149217003000, guid: d54702d0f2e5f8648a1f72fd2349232b,
+        type: 2}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d54702d0f2e5f8648a1f72fd2349232b, type: 2}
   m_IsPrefabParent: 0
@@ -1885,6 +1900,11 @@ Prefab:
     - target: {fileID: 1312592322177590, guid: 2f3f7ef8a68620c429d59d09a3ae07d8, type: 2}
       propertyPath: m_Name
       value: BatMonster
+      objectReference: {fileID: 0}
+    - target: {fileID: 114672645091016994, guid: 2f3f7ef8a68620c429d59d09a3ae07d8,
+        type: 2}
+      propertyPath: damage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f3f7ef8a68620c429d59d09a3ae07d8, type: 2}
@@ -3208,6 +3228,11 @@ Prefab:
     - target: {fileID: 1312592322177590, guid: 2f3f7ef8a68620c429d59d09a3ae07d8, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114672645091016994, guid: 2f3f7ef8a68620c429d59d09a3ae07d8,
+        type: 2}
+      propertyPath: damage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f3f7ef8a68620c429d59d09a3ae07d8, type: 2}
