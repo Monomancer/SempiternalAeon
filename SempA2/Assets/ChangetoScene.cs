@@ -9,6 +9,19 @@ public class ChangetoScene : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        SceneSelection();
+        
+    }
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            SceneSelection();
+        }
+    }
+
+    private void SceneSelection()
+    {
         switch (sceneName)
         {
             case "grassy":
@@ -22,9 +35,6 @@ public class ChangetoScene : MonoBehaviour {
                 break;
             default: break;
         }
-        
-        
-        
     }
 
 }
