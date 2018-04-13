@@ -223,12 +223,12 @@ Prefab:
     - target: {fileID: 224195483184329048, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224195483184329048, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1486453426350436, guid: 90e3b5c589f7aeb4784d4e68506db0ab, type: 2}
       propertyPath: m_Name
@@ -304,15 +304,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   npcName: ???
-  dialogueArray:
-  - blah
-  - blahblah
-  - blahblahblah
-  - blahblahblahblah
+  questStartDialogueArray:
+  - hidden message maybe
+  - Help! we're being over run with bats!
+  - So many bats we don't even have time to finish building our town!
+  - Or even think up dialogue that isn't meta and 4th wall breaking.
+  - 'Can you help us? We need you to kill '
+  questInProgressDialogueArray:
+  - maybe hidden message?
+  - you still have more bats to kill!
+  - Maybe... I'm actually bad at counting
+  questCompletedDialogueArray:
+  - hidden message maybe
+  - thank you for killing those bats!
+  - good job!
+  questErrorDialogueArray:
+  - this should never happen...
   hasMonsterQuest: 0
   monsterName: bat
-  amount: 4
-  experience: 23
+  killsRequired: 3
+  experience: 0
 --- !u!60 &506615999
 PolygonCollider2D:
   m_ObjectHideFlags: 0
