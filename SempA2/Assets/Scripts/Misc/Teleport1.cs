@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Teleport1 : MonoBehaviour
 {
+    public string sceneName;
 	void OnCollisionEnter2D (Collision2D col)
 	{
 		if (col.gameObject.tag == "Player") {

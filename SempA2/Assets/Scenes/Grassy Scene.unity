@@ -471,8 +471,8 @@ GameObject:
   m_Component:
   - component: {fileID: 694802555}
   - component: {fileID: 694802554}
-  - component: {fileID: 694802553}
   - component: {fileID: 694802552}
+  - component: {fileID: 694802553}
   m_Layer: 0
   m_Name: cave_door
   m_TagString: Untagged
@@ -513,9 +513,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 694802551}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08a35aca3bcbde643a6bd11e3dcc79c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 39f1d98ac50f38749b5d02b98a8919a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: town
 --- !u!212 &694802554
 SpriteRenderer:
   m_ObjectHideFlags: 0
