@@ -61,6 +61,7 @@ public class EnemyHealthManager : MonoBehaviour
 		anim.Play ("die");
 		SpawnLoot ();
 		GrantExperience ();
+        GameObject.FindGameObjectWithTag("UICanvas").GetComponent<PlayerStats>().IncrementKills();
 		// GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestManager> ().UpdateMonsterQuest (gameObject.GetComponent<MonsterAI> ().monsterName);
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
 		GameObject.FindGameObjectWithTag ("SpawnManager").GetComponent<EnemySpawnManager> ().ReduceSpawnCoint ();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -33,19 +34,31 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		healthBar.maxValue = ph.playerMaxHealth;
-		healthBar.value = ph.playerCurrentHealth;
-		healthText.text = "HP: " + ph.playerCurrentHealth + "/" + ph.playerMaxHealth;
+        if(SceneManager.GetActiveScene().name == "QuestScene")
+        {
+            //do nothing
+        }
+        else
+        {
+            healthBar.maxValue = ph.playerMaxHealth;
+            healthBar.value = ph.playerCurrentHealth;
+            healthText.text = "HP: " + ph.playerCurrentHealth + "/" + ph.playerMaxHealth;
 
-		if (inMenu) {
-			tabMenu.SetActive (true);
-		} else {
-			tabMenu.SetActive (false);
-		}
+            if (inMenu)
+            {
+                tabMenu.SetActive(true);
+            }
+            else
+            {
+                tabMenu.SetActive(false);
+            }
 
-		if (Input.GetKeyDown (KeyCode.Tab)) {
-			inMenu = !inMenu;		
-		}
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                inMenu = !inMenu;
+            }
+        }
+
 	}
 
 	public void CloseAllUI ()

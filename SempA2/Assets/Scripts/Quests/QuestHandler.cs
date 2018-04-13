@@ -26,7 +26,9 @@ public class QuestHandler : MonoBehaviour
 
     private void OnMouseDown()
     {
+       var x = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<PlayerStats>().batsKilledgetter();
         Debug.Log("trigger hit");
+        Debug.Log("batskilled = " + x);
         if (!dMan.dialogueActive)
         {
             dMan.ActivateDialogueBox();

@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
 	public int currentLevel;
 	public int currentExp;
 	public int expModifier;
+    public static int batsKilled;
 
 	// Use this for initialization
 	void Start ()
@@ -21,4 +22,16 @@ public class PlayerStats : MonoBehaviour
 			
 		}
 	}
+
+    public void IncrementKills()
+    {
+        batsKilled++;
+        Debug.Log("bats killed incremented");
+        Debug.Log("bats killed = " + batsKilled);
+    }
+
+    public int batsKilledgetter()
+    {
+        return batsKilled;
+    }
 }
