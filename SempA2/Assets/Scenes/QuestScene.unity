@@ -113,6 +113,130 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &196511200
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224385039154296042, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 223871910091064412, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114385872943617728, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: ph
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 224195483184329048, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224195483184329048, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486453426350436, guid: 90e3b5c589f7aeb4784d4e68506db0ab, type: 2}
+      propertyPath: m_Name
+      value: UICanvas (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 90e3b5c589f7aeb4784d4e68506db0ab, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &506615996
 Prefab:
   m_ObjectHideFlags: 0
@@ -176,9 +300,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 506615997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 882435cf4796e1547af0e12d03a5e936, type: 3}
+  m_Script: {fileID: 11500000, guid: 3189b30c00873494a9e7580390a1f092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: ???
+  dialogueArray:
+  - blah
+  - blahblah
+  - blahblahblah
+  - blahblahblahblah
+  hasMonsterQuest: 0
+  monsterName: bat
+  amount: 4
+  experience: 23
 --- !u!60 &506615999
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -459,6 +459,11 @@ Prefab:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 588543421}
+    - target: {fileID: 114027149217003000, guid: d54702d0f2e5f8648a1f72fd2349232b,
+        type: 2}
+      propertyPath: damage
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d54702d0f2e5f8648a1f72fd2349232b, type: 2}
   m_IsPrefabParent: 0
