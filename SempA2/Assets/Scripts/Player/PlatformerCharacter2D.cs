@@ -51,6 +51,12 @@ namespace UnityStandardAssets._2D
 
 		private void FixedUpdate ()
 		{
+			if (gameObject.GetComponent<Animator> ().GetBool ("Is_Dead")) {
+				m_Grounded = true;
+				m_Anim.SetBool ("Ground", m_Grounded);
+				m_Anim.SetFloat ("Speed", 0);
+				return;
+			}
 			m_Grounded = false;
 
 			// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -70,6 +76,10 @@ namespace UnityStandardAssets._2D
 
 		public void Move (float move, bool crouch, bool jump)
 		{
+			if (gameObject.GetComponent<Animator> ().GetBool ("Is_Dead")) {
+				m_Anim.SetFloat ("Speed", 0);
+				return;
+			}
 			// If crouching, check to see if the character can stand up
 			if (!crouch && m_Anim.GetBool ("Crouch")) {
 				// If the character has a ceiling preventing them from standing up, keep them crouching
@@ -127,9 +137,7 @@ namespace UnityStandardAssets._2D
 		public void Jump_Attack (bool attack, float move)
 		{
 			if (attack && !m_Grounded) {
-				//Debug.Log ("in");
 				m_Anim.SetBool ("Jump_Attack", true);
-
 				m_Anim.SetFloat ("Speed", 0);
 			} else if (m_Grounded) {
 				m_Anim.SetBool ("Jump_Attack", false);

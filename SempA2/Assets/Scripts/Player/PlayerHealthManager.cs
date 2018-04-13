@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityStandardAssets._2D;
 using System.Runtime.InteropServices;
 using NUnit.Framework.Constraints;
+using System.IO;
 
 public class PlayerHealthManager : MonoBehaviour
 {
@@ -14,11 +15,13 @@ public class PlayerHealthManager : MonoBehaviour
 	public GameObject combatText;
 	public float knockBackAmount;
 	private bool canBeHit = true;
+	private SpriteRenderer spriteRend;
 
 	// Use this for initialization
 	void Start ()
 	{
 		playerCurrentHealth = playerMaxHealth;
+		spriteRend = gameObject.GetComponent<SpriteRenderer> ();
 	}
 	
 	// Update is called once per frame
@@ -35,9 +38,11 @@ public class PlayerHealthManager : MonoBehaviour
 			clone.transform.position = gameObject.transform.position;
 			clone.GetComponent<FloatingNumbers> ().damageNumber = damage;
 			clone.GetComponent<FloatingNumbers> ().setColor (Color.red);
+			HitColorChange ();
 			if (playerCurrentHealth <= 0) {
-				SetMaxHealth ();
-				Die (); 
+				gameObject.GetComponent<Animator> ().SetBool ("Is_Dead", true);
+				gameObject.GetComponent<Animator> ().Play ("Die");
+				StartCoroutine (DelayDeath ());
 				return;
 			}		
 			StartCoroutine (DelayAttacks ());
@@ -53,6 +58,21 @@ public class PlayerHealthManager : MonoBehaviour
 		gameObject.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (knockVelocity, 0f));*/
 	}
 
+	public void HitColorChange ()
+	{
+		Color col = spriteRend.color;
+		StartCoroutine (ReturnOriginalColors (col));
+		col.b -= 90;
+		col.g -= 90;
+		spriteRend.color = col;
+	}
+
+	IEnumerator ReturnOriginalColors (Color color)
+	{
+		yield return new WaitForSeconds (0.5f); 
+		spriteRend.color = color;
+	}
+
 	public void SetMaxHealth ()
 	{
 		playerCurrentHealth = playerMaxHealth;
@@ -60,13 +80,22 @@ public class PlayerHealthManager : MonoBehaviour
 
 	public void Die ()
 	{
+		gameObject.GetComponent<Animator> ().SetBool ("Is_Dead", false);
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-		//Application.LoadLevel (Application.loadedLevel);
 	}
 
 	IEnumerator DelayAttacks ()
 	{
 		yield return new WaitForSeconds (1f);
 		canBeHit = true;		
+	}
+
+	IEnumerator DelayDeath ()
+	{
+		canBeHit = false;
+		yield return new WaitForSeconds (3f);
+		canBeHit = true;
+		SetMaxHealth ();
+		Die (); 
 	}
 }

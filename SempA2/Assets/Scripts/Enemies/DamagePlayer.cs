@@ -14,40 +14,11 @@ public class DamagePlayer : MonoBehaviour
 	{
 		target = GameObject.FindGameObjectWithTag ("Player");
 		anim = GetComponent<Animator> ();
-		
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{		
-		
-	}
-
-	/*void OnTriggerEnter2D (Collider2D other)
-	{
-		if (other.tag == "Player") {
-			anim.SetBool ("attack", true);
-			anim.Play ("Attack");
-		}
-	}
-
-	void OnTriggerStay2D (Collider2D other)
-	{
-		if (other.tag == "Player") {
-			anim.SetBool ("attack", true);
-		}
-	}
-
-	void OnTriggerExit2D (Collider2D other)
-	{
-		if (other.tag == "Player") {
-			anim.SetBool ("attack", false);
-		}	
-	}*/
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player" && !anim.GetBool ("isDead")) {
 			anim.SetBool ("attack", true);
 			anim.Play ("Attack");
 		}
@@ -55,7 +26,7 @@ public class DamagePlayer : MonoBehaviour
 
 	void OnCollisionStay2D (Collision2D other)
 	{
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Player" && !anim.GetBool ("isDead")) {
 			anim.SetBool ("attack", true);
 		}
 	}

@@ -10,7 +10,10 @@ public class MonsterAI : MonoBehaviour
 {
 
 	//What to chase
-	public Transform target;
+	private Transform target;
+
+	public float knockBackAmount;
+
 
 	public string monsterName;
 
@@ -50,13 +53,14 @@ public class MonsterAI : MonoBehaviour
 	public bool m_FacingRight = true;
 
 	//animator
-	//Animator anim;
+	private Animator anim;
 
 	void Start ()
 	{
 		seeker = GetComponent<Seeker> ();
 		rb = GetComponent<Rigidbody2D> ();
-		//anim = GetComponent<Animator> ();
+		anim = GetComponent<Animator> ();
+		target = GameObject.FindGameObjectWithTag ("Player").transform;
 
 		if (target == null) {
 			Debug.LogError ("No player found");
@@ -93,6 +97,19 @@ public class MonsterAI : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+		if (anim.GetBool ("wasHit")) {
+			rb.velocity = new Vector2 (0, 0);
+			float knockVelocity;
+			if (gameObject.GetComponent<MonsterAI> ().m_FacingRight) { 
+				knockVelocity = knockBackAmount * -1;
+			} else {
+				knockVelocity = knockBackAmount;
+			}
+			rb.AddForce (new Vector2 (knockVelocity, 0));
+			return;
+		} else if (anim.GetBool ("isDead")) {
+			return;
+		}
 		if ((target == null || Math.Abs (target.position.magnitude - rb.position.magnitude) > 3)) {
 			//active = false;
 			if (Time.time - time > 4) {
@@ -174,5 +191,10 @@ public class MonsterAI : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+
+	public void HitAnimationComplete ()
+	{
+		anim.SetBool ("wasHit", false);
 	}
 }

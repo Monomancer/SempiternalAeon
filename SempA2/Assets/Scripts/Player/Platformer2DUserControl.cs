@@ -29,6 +29,9 @@ namespace UnityStandardAssets._2D
 
 		private void Update ()
 		{
+			if (gameObject.GetComponent<Animator> ().GetBool ("Is_Dead")) {
+				return;
+			}
 			if (!m_Jump) {
 				// Read the jump input in Update so button presses aren't missed.
 				m_Jump = CrossPlatformInputManager.GetButtonDown ("Jump");
@@ -54,6 +57,10 @@ namespace UnityStandardAssets._2D
 
 		private void FixedUpdate ()
 		{
+			if (gameObject.GetComponent<Animator> ().GetBool ("Is_Dead")) {
+				m_Character.Move (h, crouch, m_Jump);
+				return;
+			}
 			// Pass all parameters to the character control script.
 			m_Character.Move (h, crouch, m_Jump);
 			m_Character.Basic_Attack (basic_attack, h);

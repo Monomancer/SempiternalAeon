@@ -8,16 +8,6 @@ public class QuestManager : MonoBehaviour
 {
 	ArrayList monsterQuests = new ArrayList ();
 
-	void Start ()
-	{
-		
-	}
-
-	void Update ()
-	{
-		
-	}
-
 	private MonsterQuest HasMonsterQuest (string monsterName)
 	{
 		foreach (MonsterQuest quest in monsterQuests) {
