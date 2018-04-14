@@ -8,15 +8,18 @@ public class EnemySpawnManager : MonoBehaviour
 	public int spawnCount;
 	public int maxSpawns;
 	public int spawnTime;
-	private Boolean canSpawn;
 	public GameObject enemy;
 	private GameObject[] spawnPoints;
 	// Use this for initialization
 	void Start ()
 	{
 		spawnPoints = GameObject.FindGameObjectsWithTag ("SpawnPoint");
+		if (spawnPoints.Length == 0) {
+			Debug.Log ("No spawn points found!");
+			StartCoroutine (CheckForSpawns ());
+			return;
+		}
 		spawnCount = 0;
-		canSpawn = true;
 		if (spawnCount < maxSpawns) {
 			Spawn (); 
 		}
@@ -40,7 +43,19 @@ public class EnemySpawnManager : MonoBehaviour
 		}
 	}
 
-	public void ReduceSpawnCoint ()
+	IEnumerator CheckForSpawns ()
+	{
+		yield return new WaitForSeconds (3);
+		spawnPoints = GameObject.FindGameObjectsWithTag ("SpawnPoint");
+		if (spawnPoints.Length == 0) {
+			Debug.Log ("No spawn points found!");
+			StartCoroutine (CheckForSpawns ());
+		} else {
+			Spawn ();
+		}
+	}
+
+	public void ReduceSpawnCount ()
 	{
 		spawnCount--;
 		Spawn ();

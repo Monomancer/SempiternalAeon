@@ -30,7 +30,7 @@ public class DamageEnemy : MonoBehaviour
 
 	IEnumerator CanAttack ()
 	{
-		yield return new WaitForSeconds (1f);
+		yield return new WaitForSeconds (0.5f);
 		canAttack = true;
 	}
 }

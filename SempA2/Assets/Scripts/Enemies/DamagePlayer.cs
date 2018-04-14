@@ -18,7 +18,7 @@ public class DamagePlayer : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D other)
 	{
-		if (other.gameObject.tag == "Player" && !anim.GetBool ("isDead")) {
+		if (other.gameObject.tag == "Player" && !anim.GetBool ("isDead") && !anim.GetBool ("wasHit")) {
 			anim.SetBool ("attack", true);
 			anim.Play ("Attack");
 		}
@@ -26,7 +26,7 @@ public class DamagePlayer : MonoBehaviour
 
 	void OnCollisionStay2D (Collision2D other)
 	{
-		if (other.gameObject.tag == "Player" && !anim.GetBool ("isDead")) {
+		if (other.gameObject.tag == "Player" && !anim.GetBool ("isDead") && !anim.GetBool ("wasHit")) {
 			anim.SetBool ("attack", true);
 		}
 	}

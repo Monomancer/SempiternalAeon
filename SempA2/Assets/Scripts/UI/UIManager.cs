@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Runtime.Remoting;
 
 public class UIManager : MonoBehaviour
 {
 
 	public Slider healthBar;
 	public Text healthText;
-	public PlayerHealthManager ph;
+	private PlayerHealthManager ph;
 	public GameObject tabMenu;
 	public GameObject levelUpText;
 	public Boolean inMenu = false;
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		ph = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerHealthManager> ();
 		if (!UIExists) {
 			UIExists = true;
 
