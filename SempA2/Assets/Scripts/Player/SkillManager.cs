@@ -6,8 +6,8 @@ public class SkillManager : MonoBehaviour
 {
 
 	public int level = 1;
-	public float experience = 0;
 	public GameObject uiManager;
+	private float experience = 0;
 	private float amountToNextLevel;
 
 	// Use this for initialization
@@ -26,8 +26,6 @@ public class SkillManager : MonoBehaviour
 		experience += amount;
 		if (experience >= amountToNextLevel) {
 			LevelUp ();
-			amountToNextLevel = level * 50 + (level * 100 * 0.1f);
-			experience = 0;
 		}
 
 	}
@@ -35,8 +33,12 @@ public class SkillManager : MonoBehaviour
 	public void LevelUp ()
 	{
 		level++;
+		amountToNextLevel = level * 50 + (level * 100 * 0.1f);
+		experience = 0;
 		uiManager.GetComponent<UIManager> ().ShowLevelText ();
-		gameObject.GetComponentInChildren<EdgeCollider2D> ().GetComponent<DamageEnemy> ().damage += 1;
+		foreach (GameObject obj in GameObject.FindGameObjectsWithTag ("Weapon")) {
+			obj.GetComponent<DamageEnemy> ().damage += 1;
+		}
 		gameObject.GetComponent<PlayerHealthManager> ().playerMaxHealth += 10;
 		gameObject.GetComponent<PlayerHealthManager> ().SetMaxHealth ();
 	}

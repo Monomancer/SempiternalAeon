@@ -17,7 +17,7 @@ public class DamageEnemy : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		if (canAttack && other.gameObject.tag == "Enemy" && gameObject.tag == "Weapon") {
+		if (canAttack && other.gameObject.tag == "Enemy" && gameObject.tag == "Weapon" && !other.gameObject.GetComponent<MonsterAI> ().justSpawned) {
 			canAttack = false;
 			StartCoroutine (CanAttack ());
 			Animator anim = other.gameObject.GetComponent<Animator> ();
