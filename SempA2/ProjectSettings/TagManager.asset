@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Sword
+  - Enemy
+  - Weapon
+  - SpawnPoint
+  - SpawnManager
+  - Item Database
   layers:
   - Default
   - TransparentFX
@@ -21,7 +25,7 @@ TagManager:
   - Ground
   - Enemies
   - Items
-  - 
+  - Weapons
   - 
   - 
   - 
@@ -66,4 +70,7 @@ TagManager:
     locked: 0
   - name: foreground
     uniqueID: 2904674635
+    locked: 0
+  - name: UI
+    uniqueID: 3289488691
     locked: 0
