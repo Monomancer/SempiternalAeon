@@ -10,8 +10,9 @@ public class ChangetoScene : MonoBehaviour
 
 	private void OnMouseDown ()
 	{
-		SceneSelection ();
-        
+		if (SceneManager.GetActiveScene ().name == "QuestScene" || SceneManager.GetActiveScene ().name == "townscene") {
+			SceneSelection ();
+		}
 	}
 
 	private void OnCollisionEnter2D (Collision2D col)

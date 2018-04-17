@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Security.Cryptography.X509Certificates;
 using System;
-using UnityEditor.VersionControl;
 
 public class DialogueHolder : MonoBehaviour
 {

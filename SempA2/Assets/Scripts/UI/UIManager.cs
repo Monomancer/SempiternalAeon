@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Runtime.Remoting;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour

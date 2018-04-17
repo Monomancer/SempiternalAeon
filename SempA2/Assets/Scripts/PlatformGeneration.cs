@@ -4,8 +4,6 @@ using System;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 
 public class PlatformGeneration : MonoBehaviour
 {
@@ -225,9 +223,9 @@ public class PlatformGeneration : MonoBehaviour
 
 	void SaveScene ()
 	{
-		string[] path = EditorSceneManager.GetActiveScene ().path.Split (Char.Parse ("/"));
+		/*string[] path = EditorSceneManager.GetActiveScene ().path.Split (Char.Parse ("/"));
 		path [path.Length - 1] = "AutoSave_" + path [path.Length - 1];
 		bool saveOK = EditorSceneManager.SaveScene (EditorSceneManager.GetActiveScene (), string.Join ("/", path));
-		print (saveOK); 
+		print (saveOK); */
 	}
 }

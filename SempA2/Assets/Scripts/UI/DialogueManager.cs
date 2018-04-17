@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-using UnityEditor.VersionControl;
 
 public class DialogueManager : MonoBehaviour
 {
