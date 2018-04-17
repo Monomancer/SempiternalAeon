@@ -24,8 +24,15 @@ I want the game to provide a different experience each time I start over, withou
 
 
 Alpha release instructions: Currently only Windows builds are available.
-Follow this link: https://drive.google.com/open?id=1WXeBWJt-VkSfJhj7dB1ucrkpoZH3kL-z
+Download on the landing page: https://monomancer.github.io/SempaWebsite/
 
 Click the download button in the top right to download and extract the folder. Run sempa.exe to start the game.
 
-Youtube Link: https://youtu.be/vcCCG4WPB44
+Youtube Link: https://youtu.be/
+
+
+BETA:
+
+Landing page (download here): https://monomancer.github.io/SempaWebsite/
+
+YouTube link: https://www.youtube.com/watch?v=HISgn-z1JPk&feature=youtu.be

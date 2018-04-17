@@ -4,4 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/townscene.unity
+    guid: f9307690f2d5fc1458d2156c6715437a
+  - enabled: 0
+    path: Assets/Scenes/Grassy Scene.unity
+    guid: 19b086776d92775428c3917ad065abfb
+  - enabled: 1
+    path: Assets/Scenes/QuestScene.unity
+    guid: e90ef0e60a992d54b972294ca2cf49d9
+  - enabled: 1
+    path: Assets/Scenes/Platform generation.unity
+    guid: 98319727d8a3eaa4882fd0b3fe65a970
