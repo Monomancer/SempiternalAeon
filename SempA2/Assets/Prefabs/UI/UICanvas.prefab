@@ -794,7 +794,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 114151542915721656}
   healthText: {fileID: 114084826352753924}
-  ph: {fileID: 0}
   tabMenu: {fileID: 1079509289024920}
   levelUpText: {fileID: 1393139063371228}
   inMenu: 0
@@ -1036,7 +1035,6 @@ MonoBehaviour:
   currentLevel: 1
   currentExp: 0
   expModifier: 100
-  batsKilled: 0
 --- !u!114 &114643496519706844
 MonoBehaviour:
   m_ObjectHideFlags: 1

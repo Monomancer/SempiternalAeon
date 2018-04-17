@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Teleport : MonoBehaviour
 {
+	public int HARD_CODED_CHANGE;
+
 	void OnCollisionEnter2D (Collision2D col)
 	{
+		SceneManager.LoadScene ("TownScene", LoadSceneMode.Single);
 
-		if (col.gameObject.tag == "Player") {
-			col.gameObject.transform.position = new Vector3 (-10, 0, 0);
-		}
 	}
 }

@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f1d98ac50f38749b5d02b98a8919a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: grassy
+  sceneName: Platform generation
 --- !u!1 &1878990105
 GameObject:
   m_ObjectHideFlags: 0

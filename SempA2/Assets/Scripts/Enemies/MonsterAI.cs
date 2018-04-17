@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using Pathfinding;
+using System.Collections.Generic;
 
 
 [RequireComponent (typeof(Rigidbody2D))]
@@ -55,20 +56,21 @@ public class MonsterAI : MonoBehaviour
 	//animator
 	private Animator anim;
 
+	public Boolean justSpawned;
+
 	void Start ()
 	{
+		justSpawned = true;
+		StartCoroutine (Spawned ());
 		seeker = GetComponent<Seeker> ();
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();
 		target = GameObject.FindGameObjectWithTag ("Player").transform;
-
 		if (target == null) {
 			Debug.LogError ("No player found");
 			return;
 		}
-
 		seeker.StartPath (transform.position, target.position, OnPathComplete);
-
 		StartCoroutine (UpdatePath ());
 	}
 
@@ -196,5 +198,11 @@ public class MonsterAI : MonoBehaviour
 	public void HitAnimationComplete ()
 	{
 		anim.SetBool ("wasHit", false);
+	}
+
+	IEnumerator Spawned ()
+	{
+		yield return new WaitForSeconds (3f);
+		justSpawned = false;
 	}
 }

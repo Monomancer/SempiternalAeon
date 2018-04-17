@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
- using UnityEngine.SceneManagement;
+using System.Runtime.Remoting;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
 
 	public Slider healthBar;
 	public Text healthText;
-	public PlayerHealthManager ph;
+	private PlayerHealthManager ph = null;
 	public GameObject tabMenu;
 	public GameObject levelUpText;
 	public Boolean inMenu = false;
@@ -20,6 +22,9 @@ public class UIManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		if (SceneManager.GetActiveScene ().name == "Platform generation") {
+			ph = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerHealthManager> ();
+		}
 		if (!UIExists) {
 			UIExists = true;
 
@@ -34,31 +39,22 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        if(SceneManager.GetActiveScene().name == "QuestScene")
-        {
-            //do nothing
-        }
-        else
-        {
-            healthBar.maxValue = ph.playerMaxHealth;
-            healthBar.value = ph.playerCurrentHealth;
-            healthText.text = "HP: " + ph.playerCurrentHealth + "/" + ph.playerMaxHealth;
+		if (ph != null) {
+			Debug.Log ("Player does not exist, cannot update health UI");
+			healthBar.maxValue = ph.playerMaxHealth;
+			healthBar.value = ph.playerCurrentHealth;
+			healthText.text = "HP: " + ph.playerCurrentHealth + "/" + ph.playerMaxHealth;
+		}
 
-            if (inMenu)
-            {
-                tabMenu.SetActive(true);
-            }
-            else
-            {
-                tabMenu.SetActive(false);
-            }
+		if (inMenu) {
+			tabMenu.SetActive (true);
+		} else {
+			tabMenu.SetActive (false);
+		}
 
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                inMenu = !inMenu;
-            }
-        }
-
+		if (Input.GetKeyDown (KeyCode.Tab)) {
+			inMenu = !inMenu;		
+		}
 	}
 
 	public void CloseAllUI ()

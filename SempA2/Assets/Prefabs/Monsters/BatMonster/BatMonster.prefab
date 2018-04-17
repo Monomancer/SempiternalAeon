@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyMaxHealth: 40
   enemyCurrentHealth: 0
-  experience: 10
+  experience: 20
   loot:
   - {fileID: 1489247579369152, guid: 9263126c52fbb164293793949d93200d, type: 2}
   combatText: {fileID: 1118526186733772, guid: 01b0da9d57de39a45bcfea72a412f802, type: 2}

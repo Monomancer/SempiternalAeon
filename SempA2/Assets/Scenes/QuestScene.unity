@@ -210,29 +210,19 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223871910091064412, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114385872943617728, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
-        type: 2}
-      propertyPath: ph
-      value: 
+    - target: {fileID: 1486453426350436, guid: 90e3b5c589f7aeb4784d4e68506db0ab, type: 2}
+      propertyPath: m_Name
+      value: UICanvas (1)
       objectReference: {fileID: 0}
     - target: {fileID: 224195483184329048, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224195483184329048, guid: 90e3b5c589f7aeb4784d4e68506db0ab,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1486453426350436, guid: 90e3b5c589f7aeb4784d4e68506db0ab, type: 2}
-      propertyPath: m_Name
-      value: UICanvas (1)
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 90e3b5c589f7aeb4784d4e68506db0ab, type: 2}

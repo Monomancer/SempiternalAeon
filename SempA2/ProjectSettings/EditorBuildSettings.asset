@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QuestScene.unity
     guid: e90ef0e60a992d54b972294ca2cf49d9
+  - enabled: 1
+    path: Assets/Scenes/Platform generation.unity
+    guid: 98319727d8a3eaa4882fd0b3fe65a970
