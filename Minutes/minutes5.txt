@@ -1,0 +1,39 @@
+Meeting minutes 5
+3-14-18 at 5:00 pm - 6:00 pm
+
+All present
+
+Meeting discussion:
+	-preparing for the alpha release
+
+
+Accomplished since last meeting:
+
+All team:
+Agreed to deprioritize the project this week due to the deadline being pushed back, and all of us having similar midterm schedules
+
+
+Benjamin:
+	-studied C# and wrote some concept code but nothing that was worth committing
+Justin:
+	-added attack animation
+	-fixed walking and idle animation
+
+Andrew: worked on sticky platforms and adding grappling animations
+	   Continue leveling system
+
+Before Next Meeting:
+
+Justin:
+	-continue to work on attack animation
+	-add monster to game
+
+Andrew:
+-add grappling animation to walls instead of fixing player sticking
+-leveling system
+
+Benjamin:
+	-continue working on everything listed lastweek
+	-add in various interfaces
+	-Work on quest framework
+	-Work on 1D procedural terrain generation

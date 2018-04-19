@@ -1,0 +1,41 @@
+Meeting minutes 4
+3-7-18 at 5:00 pm - 6:00 pm
+
+All present
+
+Meeting discussion:
+	-Ambiguity problem:
+		Comments from classmates indicate that the idea of our project is very broad
+
+Accomplished since last meeting:
+
+//All team:
+
+
+
+Benjamin:
+	-Took off of work so he could work on projects but between classes being canceled Friday and his uncle dying on Saturday he was unable to do any work but he let his teammates know about this.
+
+
+
+Justin:
+	-added attack animation
+	-fixed walking and idle animation
+
+Andrew: worked on sticky platforms
+
+Before Next Meeting:
+
+Justin:
+	-continue to work on attack animation
+	-add monster to game
+
+Andrew:
+-add grappling animation to walls instead of fixing player sticking
+-leveling system
+
+Benjamin:
+	-Everything listed last week:
+(	-Work on quest framework
+	-Work on 1D procedural terrain generation
+)
