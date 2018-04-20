@@ -10,7 +10,8 @@ public class Teleport : MonoBehaviour
 
 	void OnCollisionEnter2D (Collision2D col)
 	{
-		SceneManager.LoadScene ("TownScene", LoadSceneMode.Single);
-
+		if (col.gameObject.tag == "Player") {
+			SceneManager.LoadScene ("TownScene", LoadSceneMode.Single);
+		}
 	}
 }
