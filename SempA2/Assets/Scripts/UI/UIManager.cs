@@ -39,10 +39,11 @@ public class UIManager : MonoBehaviour
 	void Update ()
 	{
 		if (ph != null) {
-			Debug.Log ("Player does not exist, cannot update health UI");
 			healthBar.maxValue = ph.playerMaxHealth;
 			healthBar.value = ph.playerCurrentHealth;
 			healthText.text = "HP: " + ph.playerCurrentHealth + "/" + ph.playerMaxHealth;
+		} else {
+			Debug.Log ("Player does not exist, cannot update health UI");
 		}
 
 		if (inMenu) {

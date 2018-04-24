@@ -204,9 +204,27 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 4428271129644208, guid: be50fb304d7fd2a4fab9c51cbe2c1128, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.04
+    - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: maxSpawns
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114626211880408384, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: platformDown
+      value: 
+      objectReference: {fileID: 1739573516345126, guid: ac1a04d13f4c3e24d890fcd0e1e61ac0,
+        type: 2}
+    - target: {fileID: 114626211880408384, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: platformUp
+      value: 
+      objectReference: {fileID: 1015877622806362, guid: dd14b0c86983a1241ae90fae66d7495f,
+        type: 2}
+    - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: spawnTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be50fb304d7fd2a4fab9c51cbe2c1128, type: 2}
