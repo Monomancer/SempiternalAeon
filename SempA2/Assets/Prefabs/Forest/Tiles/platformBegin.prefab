@@ -21,7 +21,11 @@ GameObject:
   - component: {fileID: 4174636892450208}
   - component: {fileID: 212955532187922250}
   - component: {fileID: 61544440316201376}
+<<<<<<< HEAD
   - component: {fileID: 251374690976928102}
+=======
+  - component: {fileID: 251572182688086010}
+>>>>>>> development
   m_Layer: 11
   m_Name: platformBegin
   m_TagString: Untagged
@@ -111,7 +115,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+<<<<<<< HEAD
 --- !u!251 &251374690976928102
+=======
+--- !u!251 &251572182688086010
+>>>>>>> development
 PlatformEffector2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
