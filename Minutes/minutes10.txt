@@ -1,0 +1,47 @@
+Meeting minutes 10								4/25/18
+	            								5:00 pm - 6:00pm
+
+Attendance:
+All Present
+
+
+Meeting discussion:
+	-Everything that each member is going to complete for next time
+-How we will save the levels
+
+
+Accomplished since last meeting:
+
+All team:
+	-N/A
+
+Benjamin:
+-N/A
+
+
+Justin:
+	-Explored ways to implement new monster
+-Considered many sprites and animation types for monster
+-went over random terrain generation script to define exactly how to implement barriers for the player and the camera
+-created respective issues for what was described above
+
+Andrew: fixed 3 reported issues on git
+
+
+
+Before Next Meeting:
+
+Team:
+	-N/A
+
+Justin:
+	-Complete adding barrier for camera and player at each end of level
+-Finish adding new monster
+
+Andrew:
+	-Work on saving already generated platform
+-Work on main menu
+
+Benjamin:
+-Change the way player stats are tracked so they are all in one location
+-work on saving player stats across game-loads
