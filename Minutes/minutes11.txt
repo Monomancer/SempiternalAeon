@@ -1,0 +1,48 @@
+Meeting minutes 11								5/2/18
+	            								5:00 pm - 6:00pm
+
+Attendance:
+All Present
+
+
+Meeting discussion:
+	-finalizing the project for the final release
+-planning for presentation
+-adding final aspects to the game
+
+
+Accomplished since last meeting:
+
+All team:
+	-N/A
+
+Benjamin:
+-worked on refactoring the player data and save games
+
+
+Justin:
+	-In process of implementing new monster
+-Considered many sprites and animation types for monster
+-went over random terrain generation script to define exactly how to implement barriers   for the player and the camera
+-created respective issues for what was described above
+
+Andrew: worked on adding feature request
+
+
+
+Before Next Meeting:
+
+Team:
+	-N/A
+
+Justin:
+	-Complete adding barrier for camera and player at each end of level
+-Finish adding new monster
+
+Andrew:
+	-Work on saving already generated platform
+
+Benjamin:
+-finalize changing the way player stats are tracked so they are all in one location
+-finalize working on saving player stats across game-loads
+-finalize whatever else is needed for the final release
