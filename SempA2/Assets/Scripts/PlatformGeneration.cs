@@ -32,6 +32,7 @@ public class PlatformGeneration : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+
 		if (!generateMap) {
 			return;
 		}

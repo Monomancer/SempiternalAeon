@@ -14,7 +14,6 @@ public class EnemyHealthManager : MonoBehaviour
 	private Animator anim;
 	private SpriteRenderer spriteRend;
 
-
 	void Start ()
 	{
 		SetMaxHealth ();
@@ -61,7 +60,18 @@ public class EnemyHealthManager : MonoBehaviour
 		anim.Play ("die");
 		SpawnLoot ();
 		GrantExperience ();
-		GameObject.FindGameObjectWithTag ("UICanvas").GetComponent<PlayerStats> ().IncrementKills ();
+        //if we're on a monster quest, increment the progress of it
+        //if(PlayerPrefs.GetString("questType") == "monster")
+        //  {
+        //        PlayerPrefs.SetInt("questProgress", PlayerPrefs.GetInt("questProgress") + 1);
+        //      }
+        //        PlayerPrefs.SetInt("batsKilled", PlayerPrefs.GetInt("batsKilled") + 1);
+        DataController.myPlayer.BatsKilled++;
+
+        
+       
+
+
 		// GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestManager> ().UpdateMonsterQuest (gameObject.GetComponent<MonsterAI> ().monsterName);
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
 		GameObject.FindGameObjectWithTag ("SpawnManager").GetComponent<EnemySpawnManager> ().ReduceSpawnCount ();

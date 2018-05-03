@@ -13,18 +13,16 @@ public class SkillManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		amountToNextLevel = level * 50 + (level * 100 * 0.1f);
+        UpdateAmountToNextLevel();
 	}
 
 	// Update is called once per frame
-	void Update ()
-	{
-	}
 
 	public void IncreaseLevelExperience (int amount)
 	{
+        DataController.myPlayer.Exp += amount;
 		experience += amount;
-		if (experience >= amountToNextLevel) {
+		if (DataController.myPlayer.Exp >= amountToNextLevel) {
 			LevelUp ();
 		}
 
@@ -32,14 +30,20 @@ public class SkillManager : MonoBehaviour
 
 	public void LevelUp ()
 	{
-		level++;
-		amountToNextLevel = level * 50 + (level * 100 * 0.1f);
-		experience = 0;
+		DataController.myPlayer.Level++;
+        UpdateAmountToNextLevel();
+        DataController.myPlayer.Exp = 0;
 		uiManager.GetComponent<UIManager> ().ShowLevelText ();
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag ("Weapon")) {
 			obj.GetComponent<DamageEnemy> ().damage += 1;
 		}
-		gameObject.GetComponent<PlayerHealthManager> ().playerMaxHealth += 10;
-		gameObject.GetComponent<PlayerHealthManager> ().SetMaxHealth ();
-	}
+        DataController.myPlayer.MaxHealth += 10;
+        //gameObject.GetComponent<PlayerHealthManager> ().playerMaxHealth += 10;
+        gameObject.GetComponent<PlayerHealthManager> ().SetMaxHealth ();
+    }
+
+    private void UpdateAmountToNextLevel()
+    {
+        amountToNextLevel = DataController.myPlayer.Level * 50 + (DataController.myPlayer.Level * 100 * 0.1f);
+    }
 }

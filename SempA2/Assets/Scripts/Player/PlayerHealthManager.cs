@@ -19,7 +19,7 @@ public class PlayerHealthManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		playerCurrentHealth = playerMaxHealth;
+		//playerCurrentHealth = PlayerPrefs.GetInt("maxHealth");
 		spriteRend = gameObject.GetComponent<SpriteRenderer> ();
 	}
 	
@@ -32,13 +32,13 @@ public class PlayerHealthManager : MonoBehaviour
 	{
 		if (canBeHit) {
 			canBeHit = false;
-			playerCurrentHealth -= damage;
+			DataController.myPlayer.CurrentHealth -= damage;
 			var clone = (GameObject)Instantiate (combatText);
 			clone.transform.position = gameObject.transform.position;
 			clone.GetComponent<FloatingNumbers> ().damageNumber = damage;
 			clone.GetComponent<FloatingNumbers> ().setColor (Color.red);
 			HitColorChange ();
-			if (playerCurrentHealth <= 0) {
+			if (DataController.myPlayer.CurrentHealth <= 0) {
 				gameObject.GetComponent<Animator> ().SetBool ("Is_Dead", true);
 				gameObject.GetComponent<Animator> ().Play ("Die");
 				StartCoroutine (DelayDeath ());
@@ -74,7 +74,7 @@ public class PlayerHealthManager : MonoBehaviour
 
 	public void SetMaxHealth ()
 	{
-		playerCurrentHealth = playerMaxHealth;
+		DataController.myPlayer.CurrentHealth = DataController.myPlayer.MaxHealth;
 	}
 
 	public void Die ()
