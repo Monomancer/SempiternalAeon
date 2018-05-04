@@ -71,7 +71,7 @@ public class Player{
         }
         set
         {
-            PlayerPrefs.SetInt("damage", Damage);
+            PlayerPrefs.SetInt("damage", value);
         }
     }
 
@@ -88,8 +88,10 @@ public class Player{
         {
             if(QuestType == "monster")
             {
+                Debug.Log("quest counter incremented");
                 QuestProgress++;
             }
+            Debug.Log("bats killed incremented, value = " + BatsKilled);
             PlayerPrefs.SetInt("batsKilled", value);
         }
     }

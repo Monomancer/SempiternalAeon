@@ -37,10 +37,9 @@ public class SkillManager : MonoBehaviour
         UpdateAmount();
         DataController.myPlayer.Exp = 0;
 		uiManager.GetComponent<UIManager> ().ShowLevelText ();
-		foreach (GameObject obj in GameObject.FindGameObjectsWithTag ("Weapon")) {
-            DataController.myPlayer.Damage++;
+        DataController.myPlayer.Damage += 1;
+        Debug.Log("damage is now " + DataController.myPlayer.Damage);
 
-		}
 		DataController.myPlayer.MaxHealth += 10;
 		gameObject.GetComponent<PlayerHealthManager> ().SetMaxHealth ();
 	}

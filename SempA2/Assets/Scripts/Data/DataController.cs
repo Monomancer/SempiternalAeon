@@ -8,13 +8,15 @@ using System;
 
 public class DataController : MonoBehaviour {
     public static Player myPlayer;
+    public static DataController controller;
 
 
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(gameObject);
+        controller = this;
 
-        NewPlayer();
+        //NewPlayer();
 
         //call this from the menu but leave it here for now for testing purposes
         if (!PlayerPrefs.HasKey("playerInit"))
@@ -29,17 +31,19 @@ public class DataController : MonoBehaviour {
 
 
         // we can modify this later to allow us to have a menu scene
-        SceneManager.LoadScene("townscene");
+       // SceneManager.LoadScene("townscene");
 
 		
 	}
+
+
 
     public Player getPlayer()
     {
         return myPlayer;
     }
 
-    private void NewPlayer()
+    public void NewPlayer()
     {
         //remove any previously stored playerprefs
         PlayerPrefs.DeleteAll();

@@ -13,6 +13,7 @@ public class EnemyHealthManager : MonoBehaviour
 	public GameObject combatText;
 	private Animator anim;
 	private SpriteRenderer spriteRend;
+    private bool isDead;
 
 
 	void Start ()
@@ -20,6 +21,7 @@ public class EnemyHealthManager : MonoBehaviour
 		SetMaxHealth ();
 		anim = GetComponent <Animator> ();
 		spriteRend = gameObject.GetComponent<SpriteRenderer> ();
+        isDead = false;
 	}
 
 	public void TakeDamage (int damage)
@@ -29,7 +31,7 @@ public class EnemyHealthManager : MonoBehaviour
 		clone.transform.position = gameObject.transform.position;
 		clone.GetComponent<FloatingNumbers> ().damageNumber = damage;
 		HitColorChange ();
-		if (enemyCurrentHealth <= 0) {
+		if (enemyCurrentHealth <= 0  && !isDead) {
 			Die ();
 		}
 	}
@@ -56,12 +58,13 @@ public class EnemyHealthManager : MonoBehaviour
 
 	void Die ()
 	{
+        isDead = true;
 		anim.SetBool ("attack", false);
 		anim.SetBool ("isDead", true);
 		anim.Play ("die");
 		SpawnLoot ();
 		GrantExperience ();
-		GameObject.FindGameObjectWithTag ("UICanvas").GetComponent<PlayerStats> ().IncrementKills ();
+		//GameObject.FindGameObjectWithTag ("UICanvas").GetComponent<PlayerStats> ().IncrementKills ();
 		// GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestManager> ().UpdateMonsterQuest (gameObject.GetComponent<MonsterAI> ().monsterName);
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
 		GameObject.FindGameObjectWithTag ("SpawnManager").GetComponent<EnemySpawnManager> ().ReduceSpawnCount ();
