@@ -172,6 +172,7 @@ MonoBehaviour:
   pathIsEnded: 0
   nextWaypointDistance: 3
   m_FacingRight: 1
+  justSpawned: 0
 --- !u!212 &212812079216828322
 SpriteRenderer:
   m_ObjectHideFlags: 1
