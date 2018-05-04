@@ -70,18 +70,30 @@ public class PlatformGeneration : MonoBehaviour
 
 			// Platform up
 			while (platformHeight > prevPlatformHeight && (platformHeight - prevPlatformHeight > 0.01f)) {
+				// Commented out is code for regular platform up rather than slope
+				/*if (UnityEngine.Random.Range (0, 3) == 0) {
+					Instantiate (platformBegin, new Vector2 (platformNum, prevPlatformHeight + spriteSize), Quaternion.identity).transform.parent = Terrain;
+					if (UnityEngine.Random.Range (0, 3) == 0) {
+						Instantiate (spawnPoint, new Vector2 (platformNum, prevPlatformHeight + spriteSize * 2), Quaternion.identity).transform.parent = SpawnPoints;
+					}
+					for (int i = 1; i < earthDepth; i++) {
+						GenerateEarth (platformNum, prevPlatformHeight + spriteSize - (spriteSize * i));
+					}
+					platformNum += spriteSize;
+					prevPlatformHeight += spriteSize;
+				} else {*/
 				platformNum += spriteSize / 2;
 				Instantiate (platformUp, new Vector2 (platformNum, prevPlatformHeight + spriteSize / 2), Quaternion.identity).transform.parent = Terrain;
 				if (UnityEngine.Random.Range (0, 3) == 0) {
-					Instantiate (spawnPoint, new Vector2 (platformNum, platformHeight + spriteSize * 2), Quaternion.identity).transform.parent = SpawnPoints;
+					Instantiate (spawnPoint, new Vector2 (platformNum, prevPlatformHeight + spriteSize * 2), Quaternion.identity).transform.parent = SpawnPoints;
 				}
-				// Instantiate (earth, new Vector2 (platformNum - spriteSize / 2, prevPlatformHeight - (spriteSize / 2)), Quaternion.identity).transform.parent = Terrain;
 				for (int i = 1; i < earthDepth - 1; i++) {
 					GenerateEarth (platformNum + spriteSize / 2, prevPlatformHeight - (spriteSize * i));
 					GenerateEarth (platformNum - spriteSize / 2, prevPlatformHeight - (spriteSize * i));
 				}
 				platformNum += spriteSize + (spriteSize / 2);
 				prevPlatformHeight += spriteSize;
+				// }
 			}
 
 			// Platform down
@@ -104,7 +116,7 @@ public class PlatformGeneration : MonoBehaviour
 		Instantiate (platformCenter, new Vector2 (platformNum, platformHeight), Quaternion.identity).transform.parent = Terrain;
 		Instantiate (platformCenter, new Vector2 (platformNum + spriteSize, platformHeight), Quaternion.identity).transform.parent = Terrain;
 		float y = platformHeight;
-		y += (float)((spriteSize + teleportObject.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025);
+		y += (spriteSize + teleportObject.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
 		Instantiate (teleportObject, new Vector2 (platformNum + spriteSize, y), Quaternion.identity).transform.parent = Terrain;
 		Instantiate (platformEnd, new Vector2 (platformNum + spriteSize * 2, platformHeight), Quaternion.identity).transform.parent = Terrain;
 		for (int i = 1; i < earthDepth; i++) {
@@ -118,34 +130,36 @@ public class PlatformGeneration : MonoBehaviour
 	void GenerateVegetation (float x, float y)
 	{
 		float newY = y;
-		int ran = UnityEngine.Random.Range (0, 100);
+		int ran = UnityEngine.Random.Range (1, 101);
 		if (ran <= vegetationChance) {
 			if (UnityEngine.Random.Range (0, 10) >= 3) {
-				//Background
+				// Background
 				if (backgroundVegetation.Length != 0) {
 					ran = UnityEngine.Random.Range (0, backgroundVegetation.Length);
 					GameObject veg = backgroundVegetation [ran];
 					newY += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
 					Instantiate (backgroundVegetation [ran], new Vector2 (x, newY), Quaternion.identity).transform.parent = Vegetation;
 					// Generate some grass
-					if (UnityEngine.Random.Range (0, 100) >= grassesChance && backgroundGrasses.Length > 0) {
-						if (foregroundGrasses.Length > 0) {
-							if (UnityEngine.Random.Range (0, 2) == 1) {
+					if (UnityEngine.Random.Range (1, 101) <= grassesChance) {
+						if (backgroundGrasses.Length > 0) {
+							if (foregroundGrasses.Length > 0) {
+								if (UnityEngine.Random.Range (0, 2) == 1) {
+									ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
+									veg = backgroundGrasses [ran];
+									y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
+									Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
+								} else {
+									ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
+									veg = foregroundGrasses [ran];
+									y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
+									Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
+								}
+							} else {
 								ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
 								veg = backgroundGrasses [ran];
 								y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
-								Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
-							} else {
-								ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
-								veg = foregroundGrasses [ran];
-								y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
-								Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
+								Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;	
 							}
-						} else {
-							ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
-							veg = backgroundGrasses [ran];
-							y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
-							Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;	
 						}
 					}
 				} else if (foregroundVegetation.Length != 0) {
@@ -154,16 +168,18 @@ public class PlatformGeneration : MonoBehaviour
 					newY += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
 					Instantiate (foregroundVegetation [ran], new Vector2 (x, newY), Quaternion.identity).transform.parent = Vegetation;
 					// Generate some grass
-					if (UnityEngine.Random.Range (0, 100) >= grassesChance && backgroundGrasses.Length > 0) {
-						ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
-						veg = backgroundGrasses [ran];
-						y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
-						Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
-					} else if (foregroundGrasses.Length > 0) {
-						ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
-						veg = foregroundGrasses [ran];
-						y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
-						Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;				
+					if (UnityEngine.Random.Range (1, 101) <= grassesChance) {
+						if (backgroundGrasses.Length > 0) {
+							ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
+							veg = backgroundGrasses [ran];
+							y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
+							Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
+						} else if (foregroundGrasses.Length > 0) {
+							ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
+							veg = foregroundGrasses [ran];
+							y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
+							Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;				
+						}
 					}
 				}
 			} else {
@@ -174,16 +190,18 @@ public class PlatformGeneration : MonoBehaviour
 					newY += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
 					Instantiate (foregroundVegetation [ran], new Vector2 (x, newY), Quaternion.identity).transform.parent = Vegetation;
 					// Generate some grass
-					if (UnityEngine.Random.Range (0, 100) >= grassesChance && backgroundGrasses.Length > 0) {
-						ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
-						veg = backgroundGrasses [ran];
-						y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
-						Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
-					} else if (foregroundGrasses.Length > 0) {
-						ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
-						veg = foregroundGrasses [ran];
-						y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
-						Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;			
+					if (UnityEngine.Random.Range (1, 101) <= grassesChance) {
+						if (backgroundGrasses.Length > 0) {
+							ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
+							veg = backgroundGrasses [ran];
+							y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
+							Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
+						} else if (foregroundGrasses.Length > 0) {
+							ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
+							veg = foregroundGrasses [ran];
+							y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
+							Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;			
+						}
 					}
 				} else if (backgroundVegetation.Length != 0) {
 					ran = UnityEngine.Random.Range (0, backgroundVegetation.Length);
@@ -191,18 +209,20 @@ public class PlatformGeneration : MonoBehaviour
 					newY += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
 					Instantiate (backgroundVegetation [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;
 					// Generate some grass
-					if (UnityEngine.Random.Range (0, 100) >= grassesChance && backgroundGrasses.Length > 0) {
-						if (foregroundGrasses.Length > 0) {
-							if (UnityEngine.Random.Range (0, 1) == 1) {
-								ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
-								veg = backgroundGrasses [ran];
-								y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
-								Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
-							} else {
-								ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
-								veg = foregroundGrasses [ran];
-								y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
-								Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;				
+					if (UnityEngine.Random.Range (1, 101) <= grassesChance) {
+						if (backgroundGrasses.Length > 0) {
+							if (foregroundGrasses.Length > 0) {
+								if (UnityEngine.Random.Range (0, 2) == 1) {
+									ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
+									veg = backgroundGrasses [ran];
+									y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.025f;
+									Instantiate (backgroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;		
+								} else {
+									ran = UnityEngine.Random.Range (0, foregroundGrasses.Length);
+									veg = foregroundGrasses [ran];
+									y += (spriteSize + veg.GetComponent<SpriteRenderer> ().size.y) / 2 - spriteSize * 0.1f;
+									Instantiate (foregroundGrasses [ran], new Vector2 (x, y), Quaternion.identity).transform.parent = Vegetation;				
+								}
 							}
 						} else {
 							ran = UnityEngine.Random.Range (0, backgroundGrasses.Length);
