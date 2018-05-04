@@ -102,7 +102,7 @@ public class MonsterAI : MonoBehaviour
 		if (anim.GetBool ("wasHit")) {
 			rb.velocity = new Vector2 (0, 0);
 			float knockVelocity;
-			if (gameObject.GetComponent<MonsterAI> ().m_FacingRight) { 
+			if (m_FacingRight) { 
 				knockVelocity = knockBackAmount * -1;
 			} else {
 				knockVelocity = knockBackAmount;

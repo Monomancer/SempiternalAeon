@@ -8,17 +8,14 @@ public class EnemySpawnManager : MonoBehaviour
 {
 	public int maxSpawns;
 	public int spawnTime;
-	public GameObject enemy;
-    public GameObject enemy2;
+	public GameObject[] enemies;
 	private Camera playerCam;
 	private int spawnCount;
 	private GameObject[] spawnPoints;
-    private float r; 
-    // Use this for initialization
-    void Start ()
+	// Use this for initialization
+	void Start ()
 	{
-        r = UnityEngine.Random.Range(-10.0f, 10.0f);
-        playerCam = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
+		playerCam = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 		spawnCount = 0;
 		spawnPoints = GameObject.FindGameObjectsWithTag ("SpawnPoint");
 		if (spawnPoints.Length == 0) {
@@ -38,9 +35,9 @@ public class EnemySpawnManager : MonoBehaviour
 
 	private IEnumerator SpawnAfterDelay ()
 	{
-        
 
-        yield return new WaitForSeconds (spawnTime);
+
+		yield return new WaitForSeconds (spawnTime);
 		if (spawnCount < maxSpawns) {
 			Transform player = GameObject.FindGameObjectWithTag ("Player").transform;
 			int spawnPointIndex = UnityEngine.Random.Range (0, spawnPoints.Length); 
@@ -54,14 +51,12 @@ public class EnemySpawnManager : MonoBehaviour
 					spawnPointIndex = UnityEngine.Random.Range (0, spawnPoints.Length); 	
 				}
 			}
-            if (UnityEngine.Random.Range(-10.0f, 10.0f) > .5)
-            {
-                Instantiate(enemy, spawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
-            }
-            else {
-                Instantiate(enemy2, spawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
-            }
-			
+			if (enemies.Length > 0) {
+				Instantiate (enemies [UnityEngine.Random.Range (0, enemies.Length)], spawnPoints [spawnPointIndex].transform.position, Quaternion.identity);
+			} else {
+				Debug.Log ("No enemies found!");
+			}
+
 			spawnCount++;
 			if (spawnCount < maxSpawns) {
 				Spawn ();
@@ -99,6 +94,6 @@ public class EnemySpawnManager : MonoBehaviour
 
 	public void SetEnemy (GameObject e)
 	{
-		enemy = e;
+
 	}
 }
