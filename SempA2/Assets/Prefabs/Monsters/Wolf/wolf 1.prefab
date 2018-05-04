@@ -24,10 +24,10 @@ GameObject:
   - component: {fileID: 50203266432483128}
   - component: {fileID: 114657288760907820}
   - component: {fileID: 114432623896071940}
-  - component: {fileID: 58760873198805732}
   - component: {fileID: 114696439210609472}
   - component: {fileID: 114015218507567112}
-  - component: {fileID: 58643706903913154}
+  - component: {fileID: 58176206703624854}
+  - component: {fileID: 58491266740202782}
   m_Layer: 12
   m_Name: wolf 1
   m_TagString: Enemy
@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1665079426904306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.67, y: -1.043, z: 0.53808594}
+  m_LocalPosition: {x: 3.15, y: 2.84, z: 0.53808594}
   m_LocalScale: {x: 1.2107276, y: 1.1929504, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -62,13 +62,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58643706903913154
+--- !u!58 &58176206703624854
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -80,10 +80,10 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08518962, y: 0.03}
+  m_Offset: {x: 0.1615138, y: 0.021864273}
   serializedVersion: 2
-  m_Radius: 0.10091796
---- !u!58 &58760873198805732
+  m_Radius: 0.13194285
+--- !u!58 &58491266740202782
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -95,9 +95,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07310105, y: 0.03}
+  m_Offset: {x: -0.14266832, y: 0.027330216}
   serializedVersion: 2
-  m_Radius: 0.101898886
+  m_Radius: 0.14540277
 --- !u!95 &95077273988437666
 Animator:
   serializedVersion: 3
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyMaxHealth: 40
-  enemyCurrentHealth: 0
+  enemyCurrentHealth: 40
   experience: 20
   loot:
   - {fileID: 1489247579369152, guid: 9263126c52fbb164293793949d93200d, type: 2}
@@ -171,7 +171,7 @@ MonoBehaviour:
   knockBackAmount: 50
   monsterName: BatMonster
   updateRate: 5
-  speed: 90
+  speed: 180
   fMode: 0
   pathIsEnded: 0
   nextWaypointDistance: 3
@@ -223,7 +223,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ee0d8e931b780864b909177032db8c54, type: 3}
+  m_Sprite: {fileID: 21300008, guid: ee0d8e931b780864b909177032db8c54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
