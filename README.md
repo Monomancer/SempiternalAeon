@@ -28,7 +28,7 @@ Download on the landing page: https://monomancer.github.io/SempaWebsite/
 
 Click the download button in the top right to download and extract the folder. Run sempa.exe to start the game.
 
-Youtube Link: https://youtu.be/
+Youtube Link: https://www.youtube.com/watch?v=pFr83ZdFGz4&feature=youtu.be
 
 
 BETA:
