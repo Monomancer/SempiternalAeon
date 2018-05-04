@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackAmount: 50
-  monsterName: BatMonster
+  monsterName: WolfMonster
   updateRate: 5
   speed: 180
   fMode: 0

@@ -67,6 +67,10 @@ public class EnemyHealthManager : MonoBehaviour
 		//GameObject.FindGameObjectWithTag ("UICanvas").GetComponent<PlayerStats> ().IncrementKills ();
 		// GameObject.FindGameObjectWithTag ("Player").GetComponent<QuestManager> ().UpdateMonsterQuest (gameObject.GetComponent<MonsterAI> ().monsterName);
 		gameObject.GetComponent<Rigidbody2D> ().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+        if(gameObject.GetComponent<MonsterAI>().monsterName == "BatMonster")
+        {
+            DataController.myPlayer.BatsKilled++;
+        }
 		GameObject.FindGameObjectWithTag ("SpawnManager").GetComponent<EnemySpawnManager> ().ReduceSpawnCount ();
 		Destroy (gameObject, 1f);
 	}
