@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
 
 	public Slider healthBar;
 	public Text healthText;
-	private PlayerHealthManager ph = null;
+	//private PlayerHealthManager ph = null;
 	public GameObject tabMenu;
 	public GameObject levelUpText;
 	public Boolean inMenu = false;
@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 	void Start ()
 	{
 		if (SceneManager.GetActiveScene ().name == "Platform generation") {
-			ph = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerHealthManager> ();
+			//ph = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerHealthManager> ();
 		}
 		if (!UIExists) {
 			UIExists = true;
@@ -38,13 +38,13 @@ public class UIManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (ph != null) {
-			healthBar.maxValue = ph.playerMaxHealth;
-			healthBar.value = ph.playerCurrentHealth;
-			healthText.text = "HP: " + ph.playerCurrentHealth + "/" + ph.playerMaxHealth;
-		} else {
+
+			healthBar.maxValue = DataController.myPlayer.MaxHealth;
+			healthBar.value = DataController.myPlayer.CurrentHealth;
+			healthText.text = "HP: " + DataController.myPlayer.CurrentHealth + "/" + DataController.myPlayer.MaxHealth;
+
 			Debug.Log ("Player does not exist, cannot update health UI");
-		}
+		
 
 		if (inMenu) {
 			tabMenu.SetActive (true);

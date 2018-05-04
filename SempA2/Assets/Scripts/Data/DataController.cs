@@ -14,7 +14,7 @@ public class DataController : MonoBehaviour {
 	void Start () {
         DontDestroyOnLoad(gameObject);
 
-        //NewPlayer();
+        NewPlayer();
 
         //call this from the menu but leave it here for now for testing purposes
         if (!PlayerPrefs.HasKey("playerInit"))
@@ -47,10 +47,11 @@ public class DataController : MonoBehaviour {
         
         // BASIC PLAYER STATS
         PlayerPrefs.SetInt("coins", 0);
-        PlayerPrefs.SetInt("level", 0);
+        PlayerPrefs.SetInt("level", 1);
         PlayerPrefs.SetFloat("exp", 0);
         PlayerPrefs.SetInt("currentHealth", 100);
         PlayerPrefs.SetInt("maxHealth", 100);
+        PlayerPrefs.SetInt("damage", 10);
 
 
         // PROGRESS STATS

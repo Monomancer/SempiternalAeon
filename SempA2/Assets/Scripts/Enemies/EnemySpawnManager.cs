@@ -13,11 +13,12 @@ public class EnemySpawnManager : MonoBehaviour
 	private Camera playerCam;
 	private int spawnCount;
 	private GameObject[] spawnPoints;
-    private float r = UnityEngine.Random.Range(-10.0f, 10.0f);
+    private float r; 
     // Use this for initialization
     void Start ()
 	{
-		playerCam = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
+        r = UnityEngine.Random.Range(-10.0f, 10.0f);
+        playerCam = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 		spawnCount = 0;
 		spawnPoints = GameObject.FindGameObjectsWithTag ("SpawnPoint");
 		if (spawnPoints.Length == 0) {

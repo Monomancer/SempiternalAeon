@@ -63,6 +63,17 @@ public class Player{
             PlayerPrefs.SetInt("currentHealth", value);
         }
     }
+    public int Damage
+    {
+        get
+        {
+            return PlayerPrefs.GetInt("damage");
+        }
+        set
+        {
+            PlayerPrefs.SetInt("damage", Damage);
+        }
+    }
 
 
 
