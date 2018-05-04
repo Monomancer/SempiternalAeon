@@ -9,51 +9,52 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1104019211740632}
+  m_RootGameObject: {fileID: 1665079426904306}
   m_IsPrefabParent: 1
---- !u!1 &1104019211740632
+--- !u!1 &1665079426904306
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4807291761972304}
-  - component: {fileID: 212812079216828322}
-  - component: {fileID: 95191994610589600}
-  - component: {fileID: 50488436874990706}
-  - component: {fileID: 114856839825584550}
-  - component: {fileID: 114084028097492902}
-  - component: {fileID: 58415032197280948}
-  - component: {fileID: 114360895091459402}
-  - component: {fileID: 114547594254382236}
+  - component: {fileID: 4193017224654184}
+  - component: {fileID: 212863955257983288}
+  - component: {fileID: 95077273988437666}
+  - component: {fileID: 50203266432483128}
+  - component: {fileID: 114657288760907820}
+  - component: {fileID: 114432623896071940}
+  - component: {fileID: 114696439210609472}
+  - component: {fileID: 114015218507567112}
+  - component: {fileID: 58176206703624854}
+  - component: {fileID: 58491266740202782}
   m_Layer: 12
-  m_Name: BatMonster
+  m_Name: wolf 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4807291761972304
+--- !u!4 &4193017224654184
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.602, y: -0.946, z: 0.53808594}
+  m_LocalPosition: {x: 3.15, y: 2.84, z: 0.53808594}
   m_LocalScale: {x: 1.2107276, y: 1.1929504, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50488436874990706
+--- !u!50 &50203266432483128
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -61,37 +62,52 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58415032197280948
+--- !u!58 &58176206703624854
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.1615138, y: 0.021864273}
   serializedVersion: 2
-  m_Radius: 0.175
---- !u!95 &95191994610589600
+  m_Radius: 0.13194285
+--- !u!58 &58491266740202782
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1665079426904306}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.14266832, y: 0.027330216}
+  serializedVersion: 2
+  m_Radius: 0.14540277
+--- !u!95 &95077273988437666
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a4772cc028da52643bb418cf8066eea2, type: 2}
+  m_Controller: {fileID: 9100000, guid: d7fb9101db615b042b9bfdbf0a33dbba, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -99,12 +115,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114084028097492902
+--- !u!114 &114015218507567112
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b02421b1056f1448a7d9bd4bb7ae2b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyMaxHealth: 40
+  enemyCurrentHealth: 40
+  experience: 20
+  loot:
+  - {fileID: 1489247579369152, guid: 9263126c52fbb164293793949d93200d, type: 2}
+  combatText: {fileID: 1118526186733772, guid: 01b0da9d57de39a45bcfea72a412f802, type: 2}
+--- !u!114 &114432623896071940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1665079426904306}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
@@ -124,61 +157,44 @@ MonoBehaviour:
     useGraphRaycasting: 0
   traversableTags: -1
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
---- !u!114 &114360895091459402
+--- !u!114 &114657288760907820
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88d8ee5dc95af94c98c072ba70f3aba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
---- !u!114 &114547594254382236
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b02421b1056f1448a7d9bd4bb7ae2b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyMaxHealth: 40
-  enemyCurrentHealth: 0
-  experience: 20
-  loot:
-  - {fileID: 1489247579369152, guid: 9263126c52fbb164293793949d93200d, type: 2}
-  combatText: {fileID: 1118526186733772, guid: 01b0da9d57de39a45bcfea72a412f802, type: 2}
---- !u!114 &114856839825584550
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82116ae9d19f57d43afe4648aa646484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   knockBackAmount: 50
-  monsterName: BatMonster
+  monsterName: WolfMonster
   updateRate: 5
-  speed: 90
+  speed: 180
   fMode: 0
   pathIsEnded: 0
   nextWaypointDistance: 3
   m_FacingRight: 1
   justSpawned: 0
---- !u!212 &212812079216828322
+--- !u!114 &114696439210609472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1665079426904306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88d8ee5dc95af94c98c072ba70f3aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+--- !u!212 &212863955257983288
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1104019211740632}
+  m_GameObject: {fileID: 1665079426904306}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -207,7 +223,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d356f58918468864aa1f402c1138af96, type: 3}
+  m_Sprite: {fileID: 21300008, guid: ee0d8e931b780864b909177032db8c54, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

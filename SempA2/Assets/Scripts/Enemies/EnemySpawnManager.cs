@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class EnemySpawnManager : MonoBehaviour
 {
 	public int maxSpawns;
 	public int spawnTime;
-	public GameObject enemy;
+	public GameObject[] enemies;
 	private Camera playerCam;
 	private int spawnCount;
 	private GameObject[] spawnPoints;
@@ -34,6 +35,8 @@ public class EnemySpawnManager : MonoBehaviour
 
 	private IEnumerator SpawnAfterDelay ()
 	{
+
+
 		yield return new WaitForSeconds (spawnTime);
 		if (spawnCount < maxSpawns) {
 			Transform player = GameObject.FindGameObjectWithTag ("Player").transform;
@@ -48,8 +51,12 @@ public class EnemySpawnManager : MonoBehaviour
 					spawnPointIndex = UnityEngine.Random.Range (0, spawnPoints.Length); 	
 				}
 			}
+			if (enemies.Length > 0) {
+				Instantiate (enemies [UnityEngine.Random.Range (0, enemies.Length)], spawnPoints [spawnPointIndex].transform.position, Quaternion.identity);
+			} else {
+				Debug.Log ("No enemies found!");
+			}
 
-			Instantiate (enemy, spawnPoints [spawnPointIndex].transform.position, Quaternion.identity);
 			spawnCount++;
 			if (spawnCount < maxSpawns) {
 				Spawn ();
@@ -87,6 +94,6 @@ public class EnemySpawnManager : MonoBehaviour
 
 	public void SetEnemy (GameObject e)
 	{
-		enemy = e;
+
 	}
 }

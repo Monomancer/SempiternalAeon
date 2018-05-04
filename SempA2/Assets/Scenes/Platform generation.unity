@@ -172,6 +172,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4477456001198582, guid: be50fb304d7fd2a4fab9c51cbe2c1128, type: 2}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -207,7 +212,7 @@ Prefab:
     - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
         type: 2}
       propertyPath: maxSpawns
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114626211880408384, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
         type: 2}
@@ -224,8 +229,26 @@ Prefab:
     - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
         type: 2}
       propertyPath: spawnTime
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: enemy2
+      value: 
+      objectReference: {fileID: 1665079426904306, guid: 256d5fca5a749ce49be94e22509df272,
+        type: 2}
+    - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1665079426904306, guid: 256d5fca5a749ce49be94e22509df272,
+        type: 2}
+    - target: {fileID: 114664345156571152, guid: be50fb304d7fd2a4fab9c51cbe2c1128,
+        type: 2}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1104019211740632, guid: 59a5721fbfdaa3a4abc9e52c97a03d8d,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be50fb304d7fd2a4fab9c51cbe2c1128, type: 2}
   m_IsPrefabParent: 0

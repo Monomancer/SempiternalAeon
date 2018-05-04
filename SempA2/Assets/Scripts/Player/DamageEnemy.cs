@@ -6,7 +6,7 @@ using System;
 public class DamageEnemy : MonoBehaviour
 {
 
-	public int damage;
+	//public int damage;
 	private Boolean canAttack;
 
 	// Use this for initialization
@@ -23,7 +23,7 @@ public class DamageEnemy : MonoBehaviour
 			Animator anim = other.gameObject.GetComponent<Animator> ();
 			anim.Play ("hit");
 			anim.SetBool ("wasHit", true);
-			other.gameObject.GetComponent<EnemyHealthManager> ().TakeDamage (damage);
+			other.gameObject.GetComponent<EnemyHealthManager> ().TakeDamage (DataController.myPlayer.Damage);
 			gameObject.GetComponent<EdgeCollider2D> ().enabled = false;
 		}
 	}
