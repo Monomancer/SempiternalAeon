@@ -55,7 +55,7 @@ public class DataController : MonoBehaviour {
         PlayerPrefs.SetFloat("exp", 0);
         PlayerPrefs.SetInt("currentHealth", 100);
         PlayerPrefs.SetInt("maxHealth", 100);
-        PlayerPrefs.SetInt("damage", 10);
+        PlayerPrefs.SetInt("damage", 100);
 
 
         // PROGRESS STATS

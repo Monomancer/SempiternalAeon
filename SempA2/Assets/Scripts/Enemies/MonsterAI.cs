@@ -60,8 +60,8 @@ public class MonsterAI : MonoBehaviour
 
 	void Start ()
 	{
-		justSpawned = true;
-		StartCoroutine (Spawned ());
+		justSpawned = false;
+//		StartCoroutine (Spawned ());
 		seeker = GetComponent<Seeker> ();
 		rb = GetComponent<Rigidbody2D> ();
 		anim = GetComponent<Animator> ();

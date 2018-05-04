@@ -88,9 +88,8 @@ public class Player{
         {
             if(QuestType == "monster")
             {
-
                 QuestProgress++;
-                Debug.Log("quest counter incremented");
+                Debug.Log("quest counter incremented, value = " + QuestProgress);
             }
             PlayerPrefs.SetInt("batsKilled", value);
             Debug.Log("bats killed incremented, value = " + BatsKilled);
