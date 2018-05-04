@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class EnemySpawnManager : MonoBehaviour
 {
 	public int maxSpawns;
 	public int spawnTime;
 	public GameObject enemy;
+    public GameObject enemy2;
 	private Camera playerCam;
 	private int spawnCount;
 	private GameObject[] spawnPoints;
-	// Use this for initialization
-	void Start ()
+    private float r = UnityEngine.Random.Range(-10.0f, 10.0f);
+    // Use this for initialization
+    void Start ()
 	{
 		playerCam = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<Camera> ();
 		spawnCount = 0;
@@ -34,7 +37,9 @@ public class EnemySpawnManager : MonoBehaviour
 
 	private IEnumerator SpawnAfterDelay ()
 	{
-		yield return new WaitForSeconds (spawnTime);
+        
+
+        yield return new WaitForSeconds (spawnTime);
 		if (spawnCount < maxSpawns) {
 			Transform player = GameObject.FindGameObjectWithTag ("Player").transform;
 			int spawnPointIndex = UnityEngine.Random.Range (0, spawnPoints.Length); 
@@ -48,8 +53,14 @@ public class EnemySpawnManager : MonoBehaviour
 					spawnPointIndex = UnityEngine.Random.Range (0, spawnPoints.Length); 	
 				}
 			}
-
-			Instantiate (enemy, spawnPoints [spawnPointIndex].transform.position, Quaternion.identity);
+            if (UnityEngine.Random.Range(-10.0f, 10.0f) > .5)
+            {
+                Instantiate(enemy, spawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
+            }
+            else {
+                Instantiate(enemy2, spawnPoints[spawnPointIndex].transform.position, Quaternion.identity);
+            }
+			
 			spawnCount++;
 			if (spawnCount < maxSpawns) {
 				Spawn ();
